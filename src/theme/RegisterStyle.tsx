@@ -45,4 +45,7 @@ export const styles = StyleSheet.create({
     textAlign: 'right',
     justifyContent: 'center',
   },
+  space: {
+    height: 30,
+  },
 });

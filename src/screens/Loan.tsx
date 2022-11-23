@@ -20,7 +20,11 @@ export const Loan = () => {
       <View style={styles.containerForm}>
         <Text style={styles.content}>Take a Loan</Text>
         <View>
-          <TextIcon icon={'dollar-sign'} text={loanBalance} />
+          <TextIcon
+            icon={'dollar-sign'}
+            tag={'Loan balance available'}
+            text={loanBalance}
+          />
           <InputIconNumber
             icon={'dollar-sign'}
             placeholder="Loan"
@@ -28,9 +32,10 @@ export const Loan = () => {
           />
           <InputIcon
             icon={'bookmark'}
-            placeholder="Purpouse of the loan"
+            placeholder="Purpose of the loan"
             setState={setReason}
           />
+          <View style={styles.space} />
           <LoginButton text="Apply for your loan" action={() => takeLoan()} />
         </View>
       </View>

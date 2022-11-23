@@ -2,15 +2,10 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   input: {
-    height: 50,
-    fontSize: 18,
+    height: 60,
     marginRight: 10,
     marginTop: 30,
-    marginBottom: 10,
-    borderWidth: 1,
     borderColor: 'grey',
-    paddingLeft: 10,
-    borderRadius: 7,
     flex: 0.8,
   },
   row: {
@@ -24,5 +19,11 @@ export const styles = StyleSheet.create({
     flex: 0.15,
     textAlign: 'right',
     justifyContent: 'center',
+  },
+  tag: {
+    fontSize: 10,
+  },
+  mainText: {
+    fontSize: 20,
   },
 });
