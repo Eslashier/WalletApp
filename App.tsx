@@ -4,6 +4,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Loan} from './src/screens/Loan';
 import {LogIn} from './src/screens/LogIn';
 import {Register} from './src/screens/Register';
+import {Send} from './src/screens/Send';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -18,7 +19,8 @@ const App = () => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       {/* <LogIn /> */}
       {/* <Register /> */}
-      <Loan />
+      {/* <Loan /> */}
+      <Send />
     </SafeAreaView>
   );
 };
