@@ -6,7 +6,7 @@ import {styles} from './TextIconStyle';
 interface Props {
   icon: string;
   tag: string;
-  text: number;
+  text: string;
 }
 
 export const TextIcon = ({icon, tag, text}: Props) => {

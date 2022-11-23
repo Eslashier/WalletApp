@@ -23,7 +23,9 @@ export const Loan = () => {
           <TextIcon
             icon={'dollar-sign'}
             tag={'Loan balance available'}
-            text={loanBalance}
+            text={loanBalance
+              .toString()
+              .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')}
           />
           <InputIconNumber
             icon={'dollar-sign'}
