@@ -1,6 +1,6 @@
 import React from 'react';
 import {TextInput, View} from 'react-native';
-import Icon from 'react-native-vector-icons/Zocial';
+import Icon from 'react-native-vector-icons/Feather';
 import {styles} from './InputIconStyle';
 
 interface PropsString {

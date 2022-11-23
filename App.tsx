@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import { Loan } from './src/screens/Loan';
+import {Loan} from './src/screens/Loan';
 import {LogIn} from './src/screens/LogIn';
 import {Register} from './src/screens/Register';
 
