@@ -3,7 +3,7 @@ import {Text, TextInput, View} from 'react-native';
 import {Divider} from '../components/Divider';
 import {LoginButton} from '../components/LogInButton';
 import {LoginWithButton} from '../components/LogInWithButton';
-import {styles} from './LoginStyle';
+import {styles} from '../theme/LoginStyle';
 
 export const LogIn = () => {
   const [nextVisibility, setNextVisibility] = useState(false);

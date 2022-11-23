@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Text, View} from 'react-native';
 import {LoginButton} from '../components/LogInButton';
-import {styles} from './RegisterStyle';
+import {styles} from '../theme/RegisterStyle';
 import {InputIcon, InputIconPassword} from '../components/InputIcon';
 
 export const Register = () => {
