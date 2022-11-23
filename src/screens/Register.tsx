@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {Text, TextInput, View} from 'react-native';
-import {Divider} from '../components/Divider';
+import {Text, View} from 'react-native';
 import {LoginButton} from '../components/LogInButton';
 import {styles} from './RegisterStyle';
-import Icon from 'react-native-vector-icons/Zocial';
+import {InputIcon, InputIconPassword} from '../components/InputIcon';
 
 export const Register = () => {
   const [photo, setPhoto] = useState('');
@@ -28,32 +27,23 @@ export const Register = () => {
       <View style={styles.containerForm}>
         <Text style={styles.content}>Register</Text>
         <View>
-          <Icon name="email" color="blue" />
-          <TextInput
-            placeholder="Photo"
-            style={styles.input}
-            onChangeText={inputPhoto => setPhoto(inputPhoto)}
+          <InputIcon icon="instagram" placeholder="Photo" setState={setPhoto} />
+          <InputIcon icon="guest" placeholder="Full Name" setState={setName} />
+          <InputIcon icon="email" placeholder="E-mail" setState={setEmail} />
+          <InputIcon
+            icon="call"
+            placeholder="Phone Number"
+            setState={setPhone}
           />
-          <TextInput
-            placeholder="Full name"
-            style={styles.input}
-            onChangeText={inputName => setName(inputName)}
-          />
-          <TextInput
-            placeholder="Email"
-            style={styles.input}
-            onChangeText={inputEmail => setEmail(inputEmail)}
-          />
-          <TextInput placeholder="Phone number" style={styles.input} />
-          <TextInput
+          <InputIconPassword
+            icon="pinboard"
             placeholder="Password"
-            style={styles.input}
-            secureTextEntry={true}
+            setState={setPassword}
           />
-          <TextInput
-            placeholder="Confirm password"
-            style={styles.input}
-            secureTextEntry={true}
+          <InputIconPassword
+            icon="pinboard"
+            placeholder="Confirm Password"
+            setState={setVerifyPassword}
           />
           <LoginButton text="Register" action={() => register()} />
         </View>

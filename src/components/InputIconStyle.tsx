@@ -1,26 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  notVisible: {
-    display: 'none',
-  },
-  containerLogo: {
-    backgroundColor: 'white',
-    flex: 0.4,
-    justifyContent: 'center',
-  },
-  containerForm: {
-    backgroundColor: 'white',
-    flex: 0.6,
-    justifyContent: 'flex-start',
-  },
-  content: {
-    color: 'black',
-    textAlign: 'center',
-    fontSize: 25,
-    justifyContent: 'center',
-    fontWeight: 'bold',
-  },
   input: {
     height: 50,
     fontSize: 18,
