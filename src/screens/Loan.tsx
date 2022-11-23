@@ -7,13 +7,11 @@ import {TextIcon} from '../components/TextIcon';
 
 export const Loan = () => {
   const [loanBalance, setLoanBalance] = useState(50000000);
-  const [loan, setLoan] = useState('');
+  const [loan, setLoan] = useState(0);
   const [reason, setReason] = useState('');
 
   const takeLoan = () => {
-    console.log(loanBalance);
-    console.log(loan);
-    console.log(reason);
+    setLoanBalance(loanBalance - loan);
     return;
   };
 
