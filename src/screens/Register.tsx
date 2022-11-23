@@ -3,6 +3,7 @@ import {Text, TextInput, View} from 'react-native';
 import {Divider} from '../components/Divider';
 import {LoginButton} from '../components/LogInButton';
 import {styles} from './RegisterStyle';
+import Icon from 'react-native-vector-icons/Zocial';
 
 export const Register = () => {
   const [photo, setPhoto] = useState('');
@@ -27,6 +28,7 @@ export const Register = () => {
       <View style={styles.containerForm}>
         <Text style={styles.content}>Register</Text>
         <View>
+          <Icon name="email" color="blue" />
           <TextInput
             placeholder="Photo"
             style={styles.input}
