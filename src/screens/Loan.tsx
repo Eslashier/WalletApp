@@ -20,13 +20,24 @@ export const Loan = () => {
       <View style={styles.containerForm}>
         <Text style={styles.content}>Take a Loan</Text>
         <View>
-          <TextIcon icon={'dollar'} text={loanBalance} />
-          <InputIconNumber icon="guest" placeholder="Loan" setState={setLoan} />
+          <TextIcon
+            icon={'dollar-sign'}
+            tag={'Loan balance available'}
+            text={loanBalance
+              .toString()
+              .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')}
+          />
+          <InputIconNumber
+            icon={'dollar-sign'}
+            placeholder="Loan"
+            setState={setLoan}
+          />
           <InputIcon
-            icon="email"
-            placeholder="Purpouse of the loan"
+            icon={'bookmark'}
+            placeholder="Purpose of the loan"
             setState={setReason}
           />
+          <View style={styles.space} />
           <LoginButton text="Apply for your loan" action={() => takeLoan()} />
         </View>
       </View>

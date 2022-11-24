@@ -27,21 +27,21 @@ export const Register = () => {
       <View style={styles.containerForm}>
         <Text style={styles.content}>Register</Text>
         <View>
-          <InputIcon icon="instagram" placeholder="Photo" setState={setPhoto} />
-          <InputIcon icon="guest" placeholder="Full Name" setState={setName} />
-          <InputIcon icon="email" placeholder="E-mail" setState={setEmail} />
+          <InputIcon icon="image" placeholder="Photo" setState={setPhoto} />
+          <InputIcon icon="user" placeholder="Full Name" setState={setName} />
+          <InputIcon icon="mail" placeholder="E-mail" setState={setEmail} />
           <InputIcon
-            icon="call"
+            icon="phone"
             placeholder="Phone Number"
             setState={setPhone}
           />
           <InputIconPassword
-            icon="pinboard"
+            icon="key"
             placeholder="Password"
             setState={setPassword}
           />
           <InputIconPassword
-            icon="pinboard"
+            icon="key"
             placeholder="Confirm Password"
             setState={setVerifyPassword}
           />
