@@ -13,6 +13,10 @@ export const Send = () => {
 
   const sendMoney = () => {
     setBalance(balance - amount);
+    console.log(balance);
+    console.log(userToSend);
+    console.log(amount);
+    console.log(message);
     return;
   };
 

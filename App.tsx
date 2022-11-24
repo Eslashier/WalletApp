@@ -1,10 +1,11 @@
 import React from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {SafeAreaView, StatusBar, useColorScheme, View} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Loan} from './src/screens/Loan';
 import {LogIn} from './src/screens/LogIn';
 import {Register} from './src/screens/Register';
 import {Send} from './src/screens/Send';
+import {ThemeSelector} from './src/screens/ThemeSelector';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -20,7 +21,8 @@ const App = () => {
       {/* <LogIn /> */}
       {/* <Register /> */}
       {/* <Loan /> */}
-      <Send />
+      {/* <Send /> */}
+      <ThemeSelector />
     </SafeAreaView>
   );
 };
