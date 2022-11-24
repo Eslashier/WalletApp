@@ -1,6 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme, View} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {ChangePassword} from './src/screens/ChangePassword';
 import {Loan} from './src/screens/Loan';
 import {LogIn} from './src/screens/LogIn';
 import {Register} from './src/screens/Register';
@@ -22,7 +23,8 @@ const App = () => {
       {/* <Register /> */}
       {/* <Loan /> */}
       {/* <Send /> */}
-      <ThemeSelector />
+      {/* <ThemeSelector /> */}
+      {/* <ChangePassword /> */}
     </SafeAreaView>
   );
 };

@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import {styles} from '../theme/ThemesStyle';
 import {ThemeButton} from '../components/ThemeButton';
 import images from '../assets/images/images';
-import {ColorButton} from '../components/ColorButton';
+import {ColorButtonSmaller} from '../components/ColorButton';
 
 export const ThemeSelector = () => {
   return (
@@ -28,8 +28,8 @@ export const ThemeSelector = () => {
         </View>
         <View style={styles.buttons}>
           <View style={styles.containerRowButtons}>
-            <ColorButton text={'Cancel'} color={'white'} />
-            <ColorButton text={'Accept'} color={'blue'} />
+            <ColorButtonSmaller text={'Cancel'} color={'white'} />
+            <ColorButtonSmaller text={'Accept'} color={'blue'} />
           </View>
         </View>
       </View>
