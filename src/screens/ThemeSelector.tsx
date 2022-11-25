@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {styles} from '../theme/ThemesStyle';
-import {ThemeButton} from '../components/ThemeButton';
+import {ThemeButton} from '../components/ThemeButton/ThemeButton';
 import images from '../assets/images/images';
-import {ColorButtonSmaller} from '../components/ColorButton';
+import {ColorButtonSmaller} from '../components/ColorButton/ColorButton';
 
 export const ThemeSelector = () => {
   return (

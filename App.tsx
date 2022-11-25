@@ -4,6 +4,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {ChangePassword} from './src/screens/ChangePassword';
 import {Loan} from './src/screens/Loan';
 import {LogIn} from './src/screens/LogIn';
+import { Main } from './src/screens/Main';
 import {Register} from './src/screens/Register';
 import {Send} from './src/screens/Send';
 import {ThemeSelector} from './src/screens/ThemeSelector';
@@ -25,6 +26,7 @@ const App = () => {
       {/* <Send /> */}
       {/* <ThemeSelector /> */}
       {/* <ChangePassword /> */}
+      {/* <Main /> */}
     </SafeAreaView>
   );
 };

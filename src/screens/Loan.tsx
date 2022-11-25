@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Text, View} from 'react-native';
-import {LoginButton} from '../components/LogInButton';
+import {LoginButton} from '../components/LoginButton/LogInButton';
 import {styles} from '../theme/RegisterStyle';
-import {InputIcon, InputIconNumber} from '../components/InputIcon';
-import {TextIcon} from '../components/TextIcon';
+import {InputIcon, InputIconNumber} from '../components/InputIcon/InputIcon';
+import {TextIcon} from '../components/TextIcon/TextIcon';
 
 export const Loan = () => {
   const [loanBalance, setLoanBalance] = useState(50000000);

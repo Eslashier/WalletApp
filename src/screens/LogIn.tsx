@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Text, TextInput, View} from 'react-native';
-import {Divider} from '../components/Divider';
-import {LoginButton} from '../components/LogInButton';
-import {LoginWithButton} from '../components/LogInWithButton';
+import {Divider} from '../components/Divider/Divider';
+import {LoginButton} from '../components/LoginButton/LogInButton';
+import {LoginWithButton} from '../components/LoginWithButton/LogInWithButton';
 import {styles} from '../theme/LoginStyle';
 
 export const LogIn = () => {
