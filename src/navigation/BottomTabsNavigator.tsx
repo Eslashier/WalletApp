@@ -32,7 +32,6 @@ export const BottomTabsNavigator = ({
   navigation,
   route,
 }: MyStackScreenProps) => {
-  getHeaderTitle(route);
   React.useLayoutEffect(() => {
     navigation.setOptions({headerTitle: getHeaderTitle(route)});
   }, [navigation, route]);
