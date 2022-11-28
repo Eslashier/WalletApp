@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Text, View} from 'react-native';
 import {LoginButton} from '../components/LoginButton/LogInButton';
 import {styles} from '../theme/RegisterStyle';
-import {InputIcon, InputIconPassword} from '../components/InputIcon/InputIcon';
+import {InputIconPassword} from '../components/InputIcon/InputIcon';
 import {ColorButton} from '../components/ColorButton/ColorButton';
 
 interface Props {

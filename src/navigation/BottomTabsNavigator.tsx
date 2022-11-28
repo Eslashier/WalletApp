@@ -4,10 +4,39 @@ import Icon from 'react-native-vector-icons/Feather';
 import {Main} from '../screens/Main';
 import {Loan} from '../screens/Loan';
 import {Send} from '../screens/Send';
+import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
+import {
+  getFocusedRouteNameFromRoute,
+  Route,
+  RouteProp,
+} from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
-export const BottomTabsNavigator = () => {
+function getHeaderTitle(
+  route: Partial<Route<string, object | undefined>> | RouteProp<any, any>,
+) {
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home';
+
+  switch (routeName) {
+    case 'Home':
+      return 'Home';
+    case 'Loans':
+      return 'Take a loan';
+    case 'Send Money':
+      return 'Send Money';
+  }
+}
+
+export const BottomTabsNavigator = ({
+  navigation,
+  route,
+}: MyStackScreenProps) => {
+  getHeaderTitle(route);
+  React.useLayoutEffect(() => {
+    navigation.setOptions({headerTitle: getHeaderTitle(route)});
+  }, [navigation, route]);
+
   return (
     <Tab.Navigator
       initialRouteName="HomeScreen"

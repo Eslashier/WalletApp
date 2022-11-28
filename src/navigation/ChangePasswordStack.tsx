@@ -7,7 +7,7 @@ export default function ChangePasswordScreen({navigation}: MyStackScreenProps) {
   useEffect(() => {
     const backAction = () => {
       if (navigation.isFocused()) {
-        navigation.navigate('BottomTabsNavigator');
+        navigation.navigate('Wallet App');
         return true;
       } else {
         return false;
@@ -22,8 +22,8 @@ export default function ChangePasswordScreen({navigation}: MyStackScreenProps) {
   }, [navigation]);
 
   const goBack = () => {
-    navigation.navigate('BottomTabsNavigator');
+    navigation.navigate('Wallet App');
   };
 
-  return <ChangePassword action={goBack}/>;
+  return <ChangePassword action={goBack} />;
 }

@@ -23,7 +23,6 @@ export const Send = () => {
   return (
     <>
       <View style={styles.containerForm}>
-        <Text style={styles.content}>Send Money</Text>
         <View>
           <BalancePay balance={balance.toString()} text={'Account balance'} />
           <InputIcon

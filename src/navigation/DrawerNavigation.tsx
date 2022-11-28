@@ -14,6 +14,10 @@ export const DrawerNavigation = () => {
       initialRouteName="AuthScreen"
       drawerContent={props => <LateralMenu {...props} />}
       screenOptions={{
+        headerTintColor: 'white',
+        headerStyle: {
+          backgroundColor: '#1554F7',
+        },
         unmountOnBlur: true,
       }}>
       <Drawer.Screen
@@ -24,10 +28,7 @@ export const DrawerNavigation = () => {
         name="AuthScreen"
         component={LogIn}
       />
-      <Drawer.Screen
-        name="BottomTabsNavigator"
-        component={BottomTabsNavigator}
-      />
+      <Drawer.Screen name="Wallet App" component={BottomTabsNavigator} />
       <Drawer.Screen name="Change password" component={ChangePasswordScreen} />
       <Drawer.Screen name="Change your theme" component={ThemeSelectorScreen} />
     </Drawer.Navigator>

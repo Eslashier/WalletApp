@@ -18,7 +18,6 @@ export const Loan = () => {
   return (
     <>
       <View style={styles.containerForm}>
-        <Text style={styles.content}>Take a Loan</Text>
         <View>
           <TextIcon
             icon={'dollar-sign'}

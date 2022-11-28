@@ -24,7 +24,7 @@ export default function ThemeSelectorScreen({navigation}: MyStackScreenProps) {
   }, [navigation]);
 
   const goBack = () => {
-    navigation.navigate('BottomTabsNavigator');
+    navigation.navigate('Wallet App');
   };
 
   return <ThemeSelector action={goBack} />;

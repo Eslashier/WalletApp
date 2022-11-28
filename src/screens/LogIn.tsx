@@ -16,7 +16,7 @@ export const LogIn = ({navigation}: MyStackScreenProps) => {
 
   useEffect(() => {
     if (isAuth) {
-      navigation.navigate('BottomTabsNavigator');
+      navigation.navigate('Wallet App');
     }
   }, [isAuth, navigation]);
 
