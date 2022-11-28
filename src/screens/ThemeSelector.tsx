@@ -5,7 +5,11 @@ import {ThemeButton} from '../components/ThemeButton/ThemeButton';
 import images from '../assets/images/images';
 import {ColorButtonSmaller} from '../components/ColorButton/ColorButton';
 
-export const ThemeSelector = () => {
+interface Props {
+  action: () => void;
+}
+
+export const ThemeSelector = ({action}: Props) => {
   return (
     <>
       <View style={styles.buttons}>
@@ -28,7 +32,11 @@ export const ThemeSelector = () => {
         </View>
         <View style={styles.buttons}>
           <View style={styles.containerRowButtons}>
-            <ColorButtonSmaller text={'Cancel'} color={'white'} />
+            <ColorButtonSmaller
+              text={'Cancel'}
+              color={'white'}
+              action={action}
+            />
             <ColorButtonSmaller text={'Accept'} color={'blue'} />
           </View>
         </View>

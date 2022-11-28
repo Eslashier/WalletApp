@@ -5,7 +5,10 @@ import {styles} from '../theme/RegisterStyle';
 import {InputIcon, InputIconPassword} from '../components/InputIcon/InputIcon';
 import {ColorButton} from '../components/ColorButton/ColorButton';
 
-export const ChangePassword = () => {
+interface Props {
+  action: () => void;
+}
+export const ChangePassword = ({action}: Props) => {
   const [oldPassword, setOldPassword] = useState('');
   const [password, setPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
@@ -38,7 +41,7 @@ export const ChangePassword = () => {
             setState={setVerifyPassword}
           />
           <LoginButton text="Change password" action={() => changePassword()} />
-          <ColorButton text={'Cancelar'} color={'white'} />
+          <ColorButton text={'Cancelar'} color={'white'} action={action} />
         </View>
       </View>
     </>

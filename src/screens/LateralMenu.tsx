@@ -27,12 +27,12 @@ export const LateralMenu = ({navigation}: MyDrawerContentComponentProps) => {
         <LateralButton
           icon={'settings'}
           text={'Change Password'}
-          action={() => navigation.navigate('StackNavigation')}
+          action={() => navigation.navigate('Change password')}
         />
         <LateralButton
           icon={'tool'}
           text={'Change app theme'}
-          action={() => navigation.navigate('StackNavigation')}
+          action={() => navigation.navigate('Change your theme')}
         />
         <LateralButton icon={'x'} text={'Log out'} action={logout} />
       </View>
