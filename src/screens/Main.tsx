@@ -13,7 +13,6 @@ export const Main = () => {
   return (
     <>
       <View style={styles.containerForm}>
-        <Text style={styles.content}>Main</Text>
         <BalanceMain
           balance={balance.toString()}
           text={'Balance in your account'}

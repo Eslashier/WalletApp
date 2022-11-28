@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   balance: {
-    flex: 0.2,
+    flex: 0.3,
     backgroundColor: '#1554F7',
     justifyContent: 'flex-start',
   },
