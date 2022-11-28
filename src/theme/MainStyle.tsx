@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   },
   containerForm: {
     backgroundColor: 'white',
-    flex: 0.6,
+    flex: 1,
     justifyContent: 'flex-start',
   },
   content: {
@@ -48,45 +48,19 @@ export const styles = StyleSheet.create({
   space: {
     height: 30,
   },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
+  balance: {
+    flex: 0.2,
+    backgroundColor: '#1554F7',
+    justifyContent: 'flex-start',
   },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
+  textBalance: {
     color: 'white',
-    fontWeight: 'bold',
     textAlign: 'center',
+    fontSize: 55,
+    marginTop: 30,
   },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
+  transactions: {
+    flex: 0.8,
+    backgroundColor: 'aliceblue',
   },
 });

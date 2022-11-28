@@ -18,4 +18,8 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
   },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
 });

@@ -1,13 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, TextInput, View} from 'react-native';
-import {Divider} from '../components/Divider';
-import {LoginButton} from '../components/LogInButton';
-import {LoginWithButton} from '../components/LogInWithButton';
+import {useDispatch, useSelector} from 'react-redux';
+import {Divider} from '../components/Divider/Divider';
+import {LoginButton} from '../components/LoginButton/LogInButton';
+import {LoginWithButton} from '../components/LoginWithButton/LogInWithButton';
+import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
+import {setLogin, setToken} from '../redux/slices/AuthSlice';
 import {styles} from '../theme/LoginStyle';
 
-export const LogIn = () => {
+export const LogIn = ({navigation}: MyStackScreenProps) => {
+  const dispatch = useDispatch();
+  const {isAuth} = useSelector((state: any) => state.auth);
   const [nextVisibility, setNextVisibility] = useState(false);
   const [logInVisibility, setLogInVisibility] = useState(true);
+
+  useEffect(() => {
+    if (isAuth) {
+      navigation.navigate('Wallet App');
+    }
+  }, [isAuth, navigation]);
 
   const validateEmail = () => {
     setNextVisibility(true);
@@ -15,7 +26,8 @@ export const LogIn = () => {
   };
 
   const logIn = () => {
-    return;
+    dispatch(setToken('token123'));
+    dispatch(setLogin());
   };
 
   const back = () => {

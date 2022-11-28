@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Text, View} from 'react-native';
-import {LoginButton} from '../components/LogInButton';
+import {LoginButton} from '../components/LoginButton/LogInButton';
 import {styles} from '../theme/RegisterStyle';
-import {InputIcon, InputIconNumber} from '../components/InputIcon';
-import {BalancePay} from '../components/BalancePay';
+import {InputIcon, InputIconNumber} from '../components/InputIcon/InputIcon';
+import {BalancePay} from '../components/BalancePay/BalancePay';
 
 export const Send = () => {
   const [balance, setBalance] = useState(140000000);
@@ -23,7 +23,6 @@ export const Send = () => {
   return (
     <>
       <View style={styles.containerForm}>
-        <Text style={styles.content}>Send Money</Text>
         <View>
           <BalancePay balance={balance.toString()} text={'Account balance'} />
           <InputIcon

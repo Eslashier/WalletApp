@@ -1,11 +1,15 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {styles} from '../theme/ThemesStyle';
-import {ThemeButton} from '../components/ThemeButton';
+import {ThemeButton} from '../components/ThemeButton/ThemeButton';
 import images from '../assets/images/images';
-import {ColorButton} from '../components/ColorButton';
+import {ColorButtonSmaller} from '../components/ColorButton/ColorButton';
 
-export const ThemeSelector = () => {
+interface Props {
+  action: () => void;
+}
+
+export const ThemeSelector = ({action}: Props) => {
   return (
     <>
       <View style={styles.buttons}>
@@ -28,8 +32,12 @@ export const ThemeSelector = () => {
         </View>
         <View style={styles.buttons}>
           <View style={styles.containerRowButtons}>
-            <ColorButton text={'Cancel'} color={'white'} />
-            <ColorButton text={'Accept'} color={'blue'} />
+            <ColorButtonSmaller
+              text={'Cancel'}
+              color={'white'}
+              action={action}
+            />
+            <ColorButtonSmaller text={'Accept'} color={'blue'} />
           </View>
         </View>
       </View>

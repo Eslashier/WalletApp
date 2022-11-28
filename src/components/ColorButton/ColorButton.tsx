@@ -8,6 +8,23 @@ interface Props {
   action?: () => void;
 }
 
+export const ColorButtonSmaller = ({text, color, action}: Props) => {
+  return (
+    <Pressable
+      style={{
+        ...(color === 'white'
+          ? styles.whiteButtonSmaller
+          : styles.blueButtonSmaller),
+      }}
+      onPress={action}>
+      <Text
+        style={{...(color === 'white' ? styles.blueText : styles.whiteText)}}>
+        {text}
+      </Text>
+    </Pressable>
+  );
+};
+
 export const ColorButton = ({text, color, action}: Props) => {
   return (
     <Pressable

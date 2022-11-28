@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  whiteButton: {
+  whiteButtonSmaller: {
     backgroundColor: 'white',
     height: 50,
     width: 175,
@@ -16,10 +16,10 @@ export const styles = StyleSheet.create({
   blueText: {
     color: '#1554F7',
     alignSelf: 'center',
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: 'bold',
   },
-  blueButton: {
+  blueButtonSmaller: {
     backgroundColor: '#1554F7',
     height: 50,
     width: 175,
@@ -34,7 +34,28 @@ export const styles = StyleSheet.create({
   whiteText: {
     color: 'white',
     alignSelf: 'center',
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: 'bold',
+  },
+  whiteButton: {
+    height: 50,
+    marginHorizontal: 40,
+    borderWidth: 1,
+    padding: 1,
+    borderColor: 'lightgrey',
+    borderRadius: 7,
+    justifyContent: 'center',
+  },
+  blueButton: {
+    backgroundColor: '#1554F7',
+    height: 50,
+    width: 175,
+    marginHorizontal: 40,
+    marginVertical: 10,
+    borderWidth: 2,
+    padding: 1,
+    borderRadius: 5,
+    borderColor: 'lightgrey',
+    justifyContent: 'center',
   },
 });
