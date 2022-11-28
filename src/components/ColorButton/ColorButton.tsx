@@ -37,3 +37,20 @@ export const ColorButton = ({text, color, action}: Props) => {
     </Pressable>
   );
 };
+
+export const ColorButtonWidder = ({text, color, action}: Props) => {
+  return (
+    <Pressable
+      style={{
+        ...(color === 'white'
+          ? styles.whiteButtonWidder
+          : styles.blueButtonWidder),
+      }}
+      onPress={action}>
+      <Text
+        style={{...(color === 'white' ? styles.blueText : styles.whiteText)}}>
+        {text}
+      </Text>
+    </Pressable>
+  );
+};

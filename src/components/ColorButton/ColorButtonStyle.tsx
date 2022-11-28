@@ -58,4 +58,23 @@ export const styles = StyleSheet.create({
     borderColor: 'lightgrey',
     justifyContent: 'center',
   },
+  whiteButtonWidder: {
+    height: 40,
+    width: '90%',
+    borderWidth: 1,
+    padding: 1,
+    borderColor: 'lightgrey',
+    justifyContent: 'center',
+  },
+  blueButtonWidder: {
+    backgroundColor: '#1554F7',
+    height: 40,
+    width: '90%',
+    marginTop: 20,
+    marginBottom: 5,
+    borderWidth: 2,
+    padding: 1,
+    borderColor: '#1554F7',
+    justifyContent: 'center',
+  },
 });

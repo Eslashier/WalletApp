@@ -4,8 +4,10 @@ import {LoginButton} from '../components/LoginButton/LogInButton';
 import {styles} from '../theme/RegisterStyle';
 import {InputIcon, InputIconNumber} from '../components/InputIcon/InputIcon';
 import {BalancePay} from '../components/BalancePay/BalancePay';
+import {ModalSend} from '../components/ModalSend/ModalSend';
 
 export const Send = () => {
+  const [modalVisible, setModalVisible] = useState(false);
   const [balance, setBalance] = useState(140000000);
   const [userToSend, setUserToSend] = useState('');
   const [amount, setAmount] = useState(0);
@@ -13,16 +15,19 @@ export const Send = () => {
 
   const sendMoney = () => {
     setBalance(balance - amount);
-    console.log(balance);
-    console.log(userToSend);
-    console.log(amount);
-    console.log(message);
+    setModalVisible(!modalVisible);
     return;
   };
 
   return (
     <>
       <View style={styles.containerForm}>
+        <ModalSend
+          isVisible={modalVisible}
+          ammount={amount.toString()}
+          actionButtonTake={sendMoney}
+          setState={setModalVisible}
+        />
         <View>
           <BalancePay balance={balance.toString()} text={'Account balance'} />
           <InputIcon
@@ -41,7 +46,10 @@ export const Send = () => {
             setState={setMessage}
           />
           <View style={styles.space} />
-          <LoginButton text="Send Money" action={() => sendMoney()} />
+          <LoginButton
+            text="Send Money"
+            action={() => setModalVisible(!modalVisible)}
+          />
         </View>
       </View>
     </>

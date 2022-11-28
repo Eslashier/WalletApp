@@ -4,9 +4,10 @@ import {LoginButton} from '../components/LoginButton/LogInButton';
 import {styles} from '../theme/RegisterStyle';
 import {InputIcon, InputIconNumber} from '../components/InputIcon/InputIcon';
 import {TextIcon} from '../components/TextIcon/TextIcon';
+import {ModalLoan} from '../components/ModalLoan/ModalLoan';
 
 export const Loan = () => {
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [loanBalance, setLoanBalance] = useState(50000000);
   const [loan, setLoan] = useState(0);
   const [reason, setReason] = useState('');
@@ -18,22 +19,18 @@ export const Loan = () => {
 
   const takeLoan = () => {
     setLoanBalance(loanBalance - loan);
+    setModalVisible(false);
     return;
   };
 
   return (
     <>
       <View style={styles.containerForm}>
-        <Modal
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
-          }}>
-          <View style={styles.centeredView}>
-            <Text>Hola</Text>
-          </View>
-        </Modal>
+        <ModalLoan
+          isVisible={modalVisible}
+          actionButtonTake={takeLoan}
+          setState={setModalVisible}
+        />
         <View>
           <TextIcon
             icon={'dollar-sign'}
