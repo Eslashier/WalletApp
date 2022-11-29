@@ -10,10 +10,13 @@ export const Send = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [balance, setBalance] = useState(140000000);
   const [userToSend, setUserToSend] = useState(' ');
-  const [amount, setAmount] = useState(0);
-  const [message, setMessage] = useState('      ');
+  const [destinationTouched, setDestinationTouched] = useState(false);
   const [errorDestination, setErrorDestination] = useState('');
+  const [amount, setAmount] = useState(0);
+  const [amountTouched, setAmountTouched] = useState(false);
   const [errorAmount, setErrorAmount] = useState('');
+  const [message, setMessage] = useState('');
+  const [messageTouched, setMessageTouched] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const sendMoney = () => {
@@ -28,13 +31,17 @@ export const Send = () => {
       setAmount(0);
       setMessage('');
       setUserToSend('');
-      return;
+      setDestinationTouched(false);
+      setAmountTouched(false);
+      setMessageTouched(false);
     } else {
       setErrorAmount('Please enter a valid loan');
       setErrorDestination('Please enter a valid purpose');
       setErrorMessage('Please enter a valid purpose');
+      setDestinationTouched(true);
+      setAmountTouched(true);
+      setMessageTouched(true);
       setModalVisible(false);
-      return;
     }
   };
 
@@ -77,7 +84,7 @@ export const Send = () => {
       <View style={styles.containerForm}>
         <ModalSend
           isVisible={modalVisible}
-          ammount={amount.toString()}
+          amount={amount.toString()}
           actionButtonTake={sendMoney}
           setState={setModalVisible}
         />
@@ -88,6 +95,8 @@ export const Send = () => {
             placeholder="User email or phone number"
             setState={setUserToSend}
             error={errorDestination}
+            touched={destinationTouched}
+            setTouched={setDestinationTouched}
           />
           <InputIconNumber
             state={amount}
@@ -95,12 +104,16 @@ export const Send = () => {
             placeholder="Amount"
             setState={setAmount}
             error={errorAmount}
+            touched={amountTouched}
+            setTouched={setAmountTouched}
           />
           <InputIcon
             icon={'bookmark'}
             placeholder="Message"
             setState={setMessage}
             error={errorMessage}
+            touched={messageTouched}
+            setTouched={setMessageTouched}
           />
           <View style={styles.space} />
           <LoginButton

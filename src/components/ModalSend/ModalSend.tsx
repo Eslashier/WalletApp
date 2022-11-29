@@ -1,18 +1,18 @@
 import React from 'react';
 import {Modal, Text, View} from 'react-native';
-import { ColorButtonSmaller, ColorButton, ColorButtonWidder } from '../ColorButton/ColorButton';
+import {ColorButtonWidder} from '../ColorButton/ColorButton';
 import {styles} from './ModalSendStyle';
 
 interface Props {
   isVisible: boolean;
-  ammount: string;
+  amount: string;
   actionButtonTake: () => void;
   setState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ModalSend = ({
   isVisible,
-  ammount,
+  amount,
   actionButtonTake,
   setState,
 }: Props) => {
@@ -33,7 +33,7 @@ export const ModalSend = ({
               </View>
               <View style={styles.ammount}>
                 <Text style={styles.totalText}>
-                  {'$ ' + ammount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')}
+                  {'$ ' + amount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')}
                 </Text>
               </View>
             </View>

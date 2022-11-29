@@ -10,9 +10,12 @@ export const Loan = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [loanBalance, setLoanBalance] = useState(50000000);
   const [loan, setLoan] = useState(0);
-  const [reason, setReason] = useState('     ');
+  const [loanTouched, setLoanTouched] = useState(false);
   const [errorLoan, setLoanError] = useState('');
+  const [reason, setReason] = useState('');
+  const [reasonTouched, setReasonTouched] = useState(false);
   const [errorReason, setErrorReason] = useState('');
+
 
   const activateModal = () => {
     console.log('hola');
@@ -25,12 +28,14 @@ export const Loan = () => {
       setModalVisible(false);
       setLoan(0);
       setReason('');
-      return;
+      setLoanTouched(false);
+      setReasonTouched(false);
     } else {
       setLoanError('Please enter a valid loan');
       setErrorReason('Please enter a valid purpose');
       setModalVisible(false);
-      return;
+      setLoanTouched(true);
+      setReasonTouched(true);
     }
   };
 
@@ -76,12 +81,16 @@ export const Loan = () => {
             state={loan ? loan : undefined}
             setState={setLoan}
             error={errorLoan}
+            touched={loanTouched}
+            setTouched={setLoanTouched}
           />
           <InputIcon
             icon={'bookmark'}
             placeholder="Purpose of the loan"
             setState={setReason}
             error={errorReason}
+            touched={reasonTouched}
+            setTouched={setReasonTouched}
           />
           <View style={styles.space} />
           <LoginButton

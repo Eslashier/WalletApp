@@ -6,6 +6,8 @@ import {styles} from './InputIconStyle';
 interface PropsString {
   icon: string;
   placeholder: string;
+  touched: boolean;
+  setTouched: React.Dispatch<React.SetStateAction<boolean>>;
   setState: React.Dispatch<React.SetStateAction<string>>;
   error?: string;
 }
@@ -13,6 +15,8 @@ interface PropsString {
 export const InputIcon = ({
   icon,
   placeholder,
+  touched,
+  setTouched,
   setState,
   error,
 }: PropsString) => {
@@ -24,11 +28,14 @@ export const InputIcon = ({
         </View>
         <TextInput
           placeholder={placeholder}
-          style={{...(error ? styles.inputError : styles.input)}}
-          onChangeText={input => setState(input)}
+          style={{...(error && touched ? styles.inputError : styles.input)}}
+          onChangeText={input => {
+            setState(input);
+            setTouched(true);
+          }}
         />
       </View>
-      <Text style={styles.error}>{error}</Text>
+      <Text style={styles.error}>{error && touched ? error : ''}</Text>
     </>
   );
 };
@@ -53,6 +60,8 @@ export const InputIconPassword = ({icon, placeholder, setState}: PropsString) =>
 interface PropsNumber {
   icon: string;
   placeholder: string;
+  touched: boolean;
+  setTouched: React.Dispatch<React.SetStateAction<boolean>>;
   setState: React.Dispatch<React.SetStateAction<number>>;
   state: number | undefined;
   error?: string;
@@ -61,6 +70,8 @@ interface PropsNumber {
 export const InputIconNumber = ({
   icon,
   placeholder,
+  touched,
+  setTouched,
   setState,
   state,
   error,
@@ -75,13 +86,14 @@ export const InputIconNumber = ({
           value={state ? state.toString() : ''}
           keyboardType="numeric"
           placeholder={placeholder}
-          style={{...(error ? styles.inputError : styles.input)}}
+          style={{...(error && touched ? styles.inputError : styles.input)}}
           onChangeText={input => {
             setState(+input);
+            setTouched(true);
           }}
         />
       </View>
-      <Text style={styles.error}>{error}</Text>
+      <Text style={styles.error}>{error && touched ? error : ''}</Text>
     </>
   );
 };
