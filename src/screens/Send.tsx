@@ -10,16 +10,32 @@ export const Send = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [balance, setBalance] = useState(140000000);
   const [userToSend, setUserToSend] = useState(' ');
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(0);
   const [message, setMessage] = useState('      ');
   const [errorDestination, setErrorDestination] = useState('');
   const [errorAmount, setErrorAmount] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const sendMoney = () => {
-    setBalance(balance - amount);
-    setModalVisible(!modalVisible);
-    return;
+    if (
+      errorDestination.length === 0 &&
+      errorAmount.length === 0 &&
+      errorMessage.length === 0 &&
+      amount > 0
+    ) {
+      setBalance(balance - amount);
+      setModalVisible(false);
+      setAmount(0);
+      setMessage('');
+      setUserToSend('');
+      return;
+    } else {
+      setErrorAmount('Please enter a valid loan');
+      setErrorDestination('Please enter a valid purpose');
+      setErrorMessage('Please enter a valid purpose');
+      setModalVisible(false);
+      return;
+    }
   };
 
   useEffect(() => {
@@ -74,6 +90,7 @@ export const Send = () => {
             error={errorDestination}
           />
           <InputIconNumber
+            state={amount}
             icon={'dollar-sign'}
             placeholder="Amount"
             setState={setAmount}

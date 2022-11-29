@@ -9,7 +9,7 @@ import {ModalLoan} from '../components/ModalLoan/ModalLoan';
 export const Loan = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [loanBalance, setLoanBalance] = useState(50000000);
-  const [loan, setLoan] = useState(1);
+  const [loan, setLoan] = useState(0);
   const [reason, setReason] = useState('     ');
   const [errorLoan, setLoanError] = useState('');
   const [errorReason, setErrorReason] = useState('');
@@ -20,17 +20,23 @@ export const Loan = () => {
   };
 
   const takeLoan = () => {
-    setLoanBalance(loanBalance - loan);
-    setModalVisible(false);
-    return;
+    if (errorLoan.length === 0 && errorReason.length === 0 && loan > 0) {
+      setLoanBalance(loanBalance - loan);
+      setModalVisible(false);
+      setLoan(0);
+      setReason('');
+      return;
+    } else {
+      setLoanError('Please enter a valid loan');
+      setErrorReason('Please enter a valid purpose');
+      setModalVisible(false);
+      return;
+    }
   };
 
   useEffect(() => {
-    const numbersRjx = /^[0-9]*$/;
     if (loan === 0) {
       setLoanError('Loan should not be empty');
-    } else if (!numbersRjx.test(loan.toString())) {
-      setLoanError('Please do not use symbols or letters');
     } else if (loan > loanBalance) {
       setLoanError('Loan cannot be greater than your loan balance');
     } else {
@@ -67,6 +73,7 @@ export const Loan = () => {
           <InputIconNumber
             icon={'dollar-sign'}
             placeholder="Loan"
+            state={loan ? loan : undefined}
             setState={setLoan}
             error={errorLoan}
           />

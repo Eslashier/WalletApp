@@ -54,6 +54,7 @@ interface PropsNumber {
   icon: string;
   placeholder: string;
   setState: React.Dispatch<React.SetStateAction<number>>;
+  state: number | undefined;
   error?: string;
 }
 
@@ -61,6 +62,7 @@ export const InputIconNumber = ({
   icon,
   placeholder,
   setState,
+  state,
   error,
 }: PropsNumber) => {
   return (
@@ -70,6 +72,7 @@ export const InputIconNumber = ({
           <Icon name={icon} color="grey" size={35} />
         </View>
         <TextInput
+          value={state ? state.toString() : ''}
           keyboardType="numeric"
           placeholder={placeholder}
           style={{...(error ? styles.inputError : styles.input)}}

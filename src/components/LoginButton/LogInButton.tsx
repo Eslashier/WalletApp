@@ -17,3 +17,13 @@ export const LoginButton = ({text, isVisible, action}: Props) => {
     </Pressable>
   );
 };
+
+export const LoginButtonWhite = ({text, isVisible, action}: Props) => {
+  return (
+    <Pressable
+      style={{...(isVisible ? styles.notVisible : styles.visibleWhite)}}
+      onPress={action}>
+      <Text style={styles.textWhite}>{text}</Text>
+    </Pressable>
+  );
+};

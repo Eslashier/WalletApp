@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View} from 'react-native';
-import {LoginButton} from '../components/LoginButton/LogInButton';
+import { LoginButton, LoginButtonWhite } from '../components/LoginButton/LogInButton';
 import {styles} from '../theme/RegisterStyle';
 import {InputIconPassword} from '../components/InputIcon/InputIcon';
 import {ColorButton} from '../components/ColorButton/ColorButton';
@@ -23,7 +23,6 @@ export const ChangePassword = ({action}: Props) => {
   return (
     <>
       <View style={styles.containerForm}>
-        <Text style={styles.content}>Register</Text>
         <View>
           <InputIconPassword
             icon="key"
@@ -41,7 +40,7 @@ export const ChangePassword = ({action}: Props) => {
             setState={setVerifyPassword}
           />
           <LoginButton text="Change password" action={() => changePassword()} />
-          <ColorButton text={'Cancelar'} color={'white'} action={action} />
+          <LoginButtonWhite text={'Cancelar'} action={action} />
         </View>
       </View>
     </>
