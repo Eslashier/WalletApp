@@ -39,6 +39,7 @@ export const styles = StyleSheet.create({
   },
   whiteButton: {
     height: 50,
+    width: 175,
     marginHorizontal: 40,
     borderWidth: 1,
     padding: 1,
@@ -62,6 +63,7 @@ export const styles = StyleSheet.create({
     height: 40,
     width: '90%',
     borderWidth: 1,
+    marginBottom: 5,
     padding: 1,
     borderColor: 'lightgrey',
     justifyContent: 'center',

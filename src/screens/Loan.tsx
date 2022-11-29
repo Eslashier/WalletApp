@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Alert, Modal, Pressable, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View} from 'react-native';
 import {LoginButton} from '../components/LoginButton/LogInButton';
 import {styles} from '../theme/RegisterStyle';
 import {InputIcon, InputIconNumber} from '../components/InputIcon/InputIcon';
@@ -9,8 +9,10 @@ import {ModalLoan} from '../components/ModalLoan/ModalLoan';
 export const Loan = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [loanBalance, setLoanBalance] = useState(50000000);
-  const [loan, setLoan] = useState(0);
-  const [reason, setReason] = useState('');
+  const [loan, setLoan] = useState(1);
+  const [reason, setReason] = useState('     ');
+  const [errorLoan, setLoanError] = useState('');
+  const [errorReason, setErrorReason] = useState('');
 
   const activateModal = () => {
     console.log('hola');
@@ -22,6 +24,29 @@ export const Loan = () => {
     setModalVisible(false);
     return;
   };
+
+  useEffect(() => {
+    const numbersRjx = /^[0-9]*$/;
+    if (loan === 0) {
+      setLoanError('Loan should not be empty');
+    } else if (!numbersRjx.test(loan.toString())) {
+      setLoanError('Please do not use symbols or letters');
+    } else if (loan > loanBalance) {
+      setLoanError('Loan cannot be greater than your loan balance');
+    } else {
+      setLoanError('');
+    }
+  }, [loan, loanBalance]);
+
+  useEffect(() => {
+    if (reason.length === 0) {
+      setErrorReason('Please specify a reason');
+    } else if (reason.length < 5) {
+      setErrorReason('The reason must be at least 5 characters');
+    } else {
+      setErrorReason('');
+    }
+  }, [reason]);
 
   return (
     <>
@@ -43,11 +68,13 @@ export const Loan = () => {
             icon={'dollar-sign'}
             placeholder="Loan"
             setState={setLoan}
+            error={errorLoan}
           />
           <InputIcon
             icon={'bookmark'}
             placeholder="Purpose of the loan"
             setState={setReason}
+            error={errorReason}
           />
           <View style={styles.space} />
           <LoginButton
