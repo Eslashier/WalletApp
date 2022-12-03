@@ -97,6 +97,7 @@ export const Send = () => {
             error={errorDestination}
             touched={destinationTouched}
             setTouched={setDestinationTouched}
+            state={userToSend}
           />
           <InputIconNumber
             state={amount}
@@ -114,6 +115,7 @@ export const Send = () => {
             error={errorMessage}
             touched={messageTouched}
             setTouched={setMessageTouched}
+            state={message}
           />
           <View style={styles.space} />
           <LoginButton

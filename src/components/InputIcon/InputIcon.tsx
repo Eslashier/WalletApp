@@ -9,6 +9,7 @@ interface PropsString {
   touched: boolean;
   setTouched: React.Dispatch<React.SetStateAction<boolean>>;
   setState: React.Dispatch<React.SetStateAction<string>>;
+  state: string | undefined;
   error?: string;
 }
 
@@ -18,6 +19,7 @@ export const InputIcon = ({
   touched,
   setTouched,
   setState,
+  state,
   error,
 }: PropsString) => {
   return (
@@ -27,6 +29,7 @@ export const InputIcon = ({
           <Icon name={icon} color="grey" size={35} />
         </View>
         <TextInput
+          value={state ? state : ''}
           placeholder={placeholder}
           style={{...(error && touched ? styles.inputError : styles.input)}}
           onChangeText={input => {

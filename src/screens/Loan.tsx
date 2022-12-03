@@ -87,6 +87,7 @@ export const Loan = () => {
           <InputIcon
             icon={'bookmark'}
             placeholder="Purpose of the loan"
+            state={reason ? reason : undefined}
             setState={setReason}
             error={errorReason}
             touched={reasonTouched}
