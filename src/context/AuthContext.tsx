@@ -19,6 +19,8 @@ const AuthContextProvider = (props: any) => {
   const getUserData = async (id?: string) => {
     const idToken = id ? id : await SInfo.getItem('idToken', {});
     const {name, picture, exp} = jwtDecode<any>(idToken);
+    //const data = jwtDecode<any>(idToken);
+    //console.log('JWT data', JSON.stringify(data, null, 2));
 
     if (exp < Date.now() / 1000) {
       throw new Error('ID token expired!');
@@ -76,7 +78,7 @@ const AuthContextProvider = (props: any) => {
 
   const logout = async () => {
     try {
-      await auth0.webAuth.clearSession({});
+      await auth0.webAuth.clearSession();
       await SInfo.deleteItem('idToken', {});
       setLoggedIn(false);
       setUserData(undefined);
