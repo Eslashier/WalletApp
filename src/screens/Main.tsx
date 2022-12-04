@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {BalanceMain} from '../components/BalanceMain/BalanceMain';
 import {styles} from '../theme/MainStyle';
 import {TRANSACTIONS} from '../shared/transactions';

@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {BottomTabsNavigator} from './BottomTabsNavigator';
 // import {LogIn} from '../screens/LogIn';
 import {LateralMenu} from '../screens/LateralMenu';
 import ChangePasswordScreen from './ChangePasswordStack';
 import ThemeSelectorScreen from './ThemeSelectorStack';
-import LoginScreen from '../screens/LoginScreen';
+import {AuthContext} from '../context/AuthContext';
+import {StackNavigator} from './LoginStack';
 
 const Drawer = createDrawerNavigator();
 
 export const DrawerNavigation = () => {
-  return (
+  const {loggedIn} = useContext(AuthContext);
+  return loggedIn ? (
     <Drawer.Navigator
-      initialRouteName="AuthScreen"
+      initialRouteName="Wallet App"
       drawerContent={props => <LateralMenu {...props} />}
       screenOptions={{
         headerTintColor: 'white',
@@ -21,17 +23,11 @@ export const DrawerNavigation = () => {
         },
         unmountOnBlur: true,
       }}>
-      <Drawer.Screen
-        options={{
-          headerShown: false,
-          swipeEnabled: false,
-        }}
-        name="AuthScreen"
-        component={LoginScreen}
-      />
       <Drawer.Screen name="Wallet App" component={BottomTabsNavigator} />
       <Drawer.Screen name="Change password" component={ChangePasswordScreen} />
       <Drawer.Screen name="Change your theme" component={ThemeSelectorScreen} />
     </Drawer.Navigator>
+  ) : (
+    <StackNavigator />
   );
 };

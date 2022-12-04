@@ -1,6 +1,5 @@
 import React, {useContext, useEffect} from 'react';
 import {View, Text} from 'react-native';
-import {StackActions} from '@react-navigation/native';
 import {AuthContext} from '../context/AuthContext';
 import {styles} from '../theme/LoginStyle';
 import {LoginButton} from '../components/LoginButton/LogInButton';
