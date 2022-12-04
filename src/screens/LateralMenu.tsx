@@ -1,21 +1,27 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {MyDrawerContentComponentProps} from '../interfaces/MyDrawerContentComponentProps';
-import {useDispatch} from 'react-redux';
 import {Image, Text, View} from 'react-native';
-import {setLogout} from '../redux/slices/AuthSlice';
 import images from '../assets/images/images';
 import {styles} from '../theme/LateralMenuStyle';
 import {LateralButton} from '../components/LateralButton/LateralButton';
+import {AuthContext} from '../context/AuthContext';
 
 export const LateralMenu = ({navigation}: MyDrawerContentComponentProps) => {
-  const dispatch = useDispatch();
+  const {logout, loggedIn, userData} = useContext(AuthContext);
 
-  const logout = () => {
-    dispatch(setLogout());
-    navigation.navigate('AuthScreen');
-  };
+  // const logout = () => {
+  //   dispatch(setLogout());
+  //   navigation.navigate('AuthScreen');
+  // };
 
-  const [name, setName] = useState('User`s name');
+  const [name] = useState('User`s name');
+
+  useEffect(() => {
+    if (loggedIn === false) {
+      navigation.navigate('AuthScreen');
+    }
+    console.log(loggedIn);
+  }, [loggedIn]);
 
   return (
     <View style={styles.mainContainer}>
@@ -34,7 +40,7 @@ export const LateralMenu = ({navigation}: MyDrawerContentComponentProps) => {
           text={'Change app theme'}
           action={() => navigation.navigate('Change your theme')}
         />
-        <LateralButton icon={'x'} text={'Log out'} action={logout} />
+        <LateralButton icon={'x'} text={'Log out'} action={() => logout()} />
       </View>
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={images[1]} />

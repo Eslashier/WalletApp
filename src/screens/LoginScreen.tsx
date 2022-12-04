@@ -1,35 +1,36 @@
 import React, {useContext, useEffect} from 'react';
-import {View, StyleSheet, Button} from 'react-native';
+import {View, Text} from 'react-native';
 import {StackActions} from '@react-navigation/native';
 import {AuthContext} from '../context/AuthContext';
+import {styles} from '../theme/LoginStyle';
+import {LoginButton} from '../components/LoginButton/LogInButton';
 
 const LoginScreen = ({navigation}: any) => {
   const {loggedIn} = useContext(AuthContext);
 
   useEffect(() => {
     if (loggedIn) {
-      navigation.dispatch(StackActions.replace('Account'));
+      navigation.navigate('Wallet App');
     }
   }, [loggedIn]);
 
   const {login} = useContext(AuthContext);
 
   return (
-    <View style={[styles.container]}>
-      <Button onPress={() => login()} title={'Login with Auth0'} />
-    </View>
+    <>
+      <View style={styles.containerLogo}>
+        <Text style={styles.content}>Wallet App</Text>
+      </View>
+      <View style={styles.containerForm}>
+        <Text style={styles.content}>
+          Create an account or log into WalletApp
+        </Text>
+        <View>
+          <LoginButton text="Login or Register" action={() => login()} />
+        </View>
+      </View>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingRight: 30,
-    paddingLeft: 30,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default LoginScreen;
