@@ -62,7 +62,7 @@ export const InputIconPassword = ({icon, placeholder, setState}: PropsString) =>
 
 interface PropsNumber {
   icon: string;
-  placeholder: string;
+  placeholder?: string;
   touched: boolean;
   setTouched: React.Dispatch<React.SetStateAction<boolean>>;
   setState: React.Dispatch<React.SetStateAction<number>>;
