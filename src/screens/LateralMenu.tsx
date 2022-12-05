@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {MyDrawerContentComponentProps} from '../interfaces/MyDrawerContentComponentProps';
 import {Image, Text, View} from 'react-native';
 import images from '../assets/images/images';
@@ -7,21 +7,8 @@ import {LateralButton} from '../components/LateralButton/LateralButton';
 import {AuthContext} from '../context/AuthContext';
 
 export const LateralMenu = ({navigation}: MyDrawerContentComponentProps) => {
-  const {logout, loggedIn, userData} = useContext(AuthContext);
-
-  // const logout = () => {
-  //   dispatch(setLogout());
-  //   navigation.navigate('AuthScreen');
-  // };
-
+  const {logout} = useContext(AuthContext);
   const [name] = useState('User`s name');
-
-  useEffect(() => {
-    if (loggedIn === false) {
-      navigation.navigate('AuthScreen');
-    }
-    console.log(loggedIn);
-  }, [loggedIn]);
 
   return (
     <View style={styles.mainContainer}>

@@ -4,6 +4,9 @@ export const styles = StyleSheet.create({
   notVisible: {
     display: 'none',
   },
+  main: {
+    flex: 1,
+  },
   containerLogo: {
     backgroundColor: 'white',
     flex: 0.4,
@@ -11,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   containerForm: {
     backgroundColor: 'white',
-    flex: 0.6,
+    flex: 1,
     justifyContent: 'flex-start',
   },
   content: {
@@ -20,6 +23,12 @@ export const styles = StyleSheet.create({
     fontSize: 25,
     justifyContent: 'center',
     fontWeight: 'bold',
+  },
+  inputTag: {
+    color: 'black',
+    textAlign: 'center',
+    fontSize: 20,
+    justifyContent: 'center',
   },
   input: {
     height: 50,

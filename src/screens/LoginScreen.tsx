@@ -1,18 +1,10 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {View, Text} from 'react-native';
 import {AuthContext} from '../context/AuthContext';
 import {styles} from '../theme/LoginStyle';
 import {LoginButton} from '../components/LoginButton/LogInButton';
 
-const LoginScreen = ({navigation}: any) => {
-  const {loggedIn} = useContext(AuthContext);
-
-  useEffect(() => {
-    if (loggedIn) {
-      navigation.navigate('Wallet App');
-    }
-  }, [loggedIn]);
-
+const LoginScreen = () => {
   const {login} = useContext(AuthContext);
 
   return (

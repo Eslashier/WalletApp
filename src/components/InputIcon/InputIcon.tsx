@@ -6,8 +6,8 @@ import {styles} from './InputIconStyle';
 interface PropsString {
   icon: string;
   placeholder: string;
-  touched: boolean;
-  setTouched: React.Dispatch<React.SetStateAction<boolean>>;
+  touched?: boolean;
+  setTouched?: React.Dispatch<React.SetStateAction<boolean>>;
   setState: React.Dispatch<React.SetStateAction<string>>;
   state: string | undefined;
   error?: string;
@@ -32,13 +32,21 @@ export const InputIcon = ({
           value={state ? state : ''}
           placeholder={placeholder}
           style={{...(error && touched ? styles.inputError : styles.input)}}
-          onChangeText={input => {
-            setState(input);
-            setTouched(true);
-          }}
+          onChangeText={
+            setTouched
+              ? input => {
+                  setState(input);
+                  setTouched(true);
+                }
+              : input => {
+                  setState(input);
+                }
+          }
         />
       </View>
-      <Text style={styles.error}>{error && touched ? error : ''}</Text>
+      <Text style={styles.error}>
+        {touched ? (error && touched ? error : '') : error}
+      </Text>
     </>
   );
 };

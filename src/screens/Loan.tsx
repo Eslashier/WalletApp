@@ -16,7 +16,6 @@ export const Loan = () => {
   const [reasonTouched, setReasonTouched] = useState(false);
   const [errorReason, setErrorReason] = useState('');
 
-
   const activateModal = () => {
     console.log('hola');
     setModalVisible(true);
