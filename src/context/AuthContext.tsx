@@ -3,6 +3,8 @@ import SInfo from 'react-native-sensitive-info';
 import Auth0 from 'react-native-auth0';
 import jwtDecode from 'jwt-decode';
 import {Alert} from 'react-native';
+import {setLoginInfo} from '../redux/slices/AuthSlice';
+import { useAppDispatch } from '../redux/storage/Store';
 
 const auth0 = new Auth0({
   domain: 'dev-i5u6y8fotlyau8mz.us.auth0.com',
@@ -10,26 +12,24 @@ const auth0 = new Auth0({
 });
 
 const AuthContextProvider = (props: any) => {
+  const dispatch = useAppDispatch();
   const [loading] = useState(true);
   const [loggedIn, setLoggedIn] = useState<boolean>();
   const [userData, setUserData] = useState<
-    {name: string; picture: string} | undefined
+    {name: string; email: string; picture: string; idToken: string} | undefined
   >();
 
   const getUserData = async (id?: string) => {
     const idToken = id ? id : await SInfo.getItem('idToken', {});
     const {name, email, picture, exp} = jwtDecode<any>(idToken);
-    // const data = jwtDecode(idToken);
-    // console.log('JWT data', JSON.stringify(data, null, 2));
-
     if (exp < Date.now() / 1000) {
       throw new Error('ID token expired!');
     }
-
     return {
       name,
       email,
       picture,
+      idToken,
     };
   };
 
@@ -55,6 +55,7 @@ const AuthContextProvider = (props: any) => {
           if (user_data) {
             setLoggedIn(true);
             setUserData(user_data);
+            dispatch(setLoginInfo(user_data));
           }
         }
       } catch (err) {
@@ -69,10 +70,11 @@ const AuthContextProvider = (props: any) => {
         scope: 'openid email profile',
       });
       await SInfo.setItem('idToken', credentials.idToken, {});
-      console.log('JWT data', JSON.stringify(credentials.idToken, null, 2));
+      // console.log('idToken', JSON.stringify(credentials.idToken, null, 2));
       const user_data = await getUserData(credentials.idToken);
       setLoggedIn(true);
       setUserData(user_data);
+      dispatch(setLoginInfo(user_data));
     } catch (err) {
       Alert.alert('Error logging in');
     }
@@ -84,6 +86,7 @@ const AuthContextProvider = (props: any) => {
       await SInfo.deleteItem('idToken', {});
       setLoggedIn(false);
       setUserData(undefined);
+      dispatch(setLoginInfo(undefined));
     } catch (err) {
       Alert.alert('Error logging in');
     }

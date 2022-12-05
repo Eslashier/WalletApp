@@ -5,10 +5,14 @@ import {styles} from '../theme/RegisterStyle';
 import {InputIcon, InputIconNumber} from '../components/InputIcon/InputIcon';
 import {TextIcon} from '../components/TextIcon/TextIcon';
 import {ModalLoan} from '../components/ModalLoan/ModalLoan';
+import {selectClientState} from '../redux/slices/ClientSlice';
+import {useSelector} from 'react-redux';
 
 export const Loan = () => {
+  const userInfo = useSelector(selectClientState());
+
   const [modalVisible, setModalVisible] = useState(false);
-  const [loanBalance, setLoanBalance] = useState(50000000);
+  const [loanBalance, setLoanBalance] = useState(+userInfo.account.credit);
   const [loan, setLoan] = useState(0);
   const [loanTouched, setLoanTouched] = useState(false);
   const [errorLoan, setLoanError] = useState('');
@@ -17,7 +21,6 @@ export const Loan = () => {
   const [errorReason, setErrorReason] = useState('');
 
   const activateModal = () => {
-    console.log('hola');
     setModalVisible(true);
   };
 

@@ -1,16 +1,17 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {possibleStatus} from '../../config/possibleStatus';
 import {checkUserExist} from '../../services/Clients/userExists';
+
 import {RootState} from '../storage/Store';
 
 interface initialStateType {
-  exists: boolean | null;
+  exists: boolean;
   status: possibleStatus;
   error: string | null;
 }
 
 const initialState: initialStateType = {
-  exists: null,
+  exists: false,
   status: possibleStatus.IDLE,
   error: null,
 };

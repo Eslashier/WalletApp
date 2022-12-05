@@ -1,21 +1,22 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {possibleStatus} from '../../../config/possibleStatus';
+import {possibleStatus} from '../../config/possibleStatus';
+
+import {registerClient} from '../../services/Clients/registerClient';
+import {RootState} from '../storage/Store';
 
 type registerClientType = {
-  name: string;
+  fullName: string;
   email: string;
   phone: number;
   photo: string;
 };
 
 interface initialStateType {
-  registerClient: registerClientType | null;
   status: possibleStatus;
   error: string | null;
 }
 
 const initialState: initialStateType = {
-  registerClient: null,
   status: possibleStatus.IDLE,
   error: null,
 };
@@ -25,16 +26,15 @@ const registerSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(checkUserExist.pending, state => {
+    builder.addCase(registerClient.pending, state => {
       state.status = possibleStatus.PENDING;
     });
-    builder.addCase(checkUserExist.fulfilled, (state, action) => {
+    builder.addCase(registerClient.fulfilled, state => {
       state.status = possibleStatus.COMPLETED;
-      state.exists = action.payload;
     });
-    builder.addCase(checkUserExist.rejected, state => {
+    builder.addCase(registerClient.rejected, state => {
       state.status = possibleStatus.FAILED;
-      state.error = 'Something went wrong fetching the existence of the user';
+      state.error = 'Something went wrong registering the client';
     });
   },
 });
@@ -42,3 +42,10 @@ const registerSlice = createSlice({
 export type {registerClientType};
 export type {initialStateType};
 export default registerSlice.reducer;
+
+export const selectUserExistsState = () => (state: RootState) =>
+  state.userExists.exists;
+export const selectUserExistsStatus = () => (state: RootState) =>
+  state.userExists.status;
+export const selectUserExistsFetchError = () => (state: RootState) =>
+  state.userExists.error;

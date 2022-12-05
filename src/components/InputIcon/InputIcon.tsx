@@ -44,9 +44,7 @@ export const InputIcon = ({
           }
         />
       </View>
-      <Text style={styles.error}>
-        {touched ? (error && touched ? error : '') : error}
-      </Text>
+      <Text style={styles.error}>{error && touched ? error : ''}</Text>
     </>
   );
 };

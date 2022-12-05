@@ -1,15 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {LoginButton} from '../components/LoginButton/LogInButton';
 import {styles} from '../theme/RegisterStyle';
 import {InputIcon, InputIconNumber} from '../components/InputIcon/InputIcon';
 import {BalancePay} from '../components/BalancePay/BalancePay';
 import {ModalSend} from '../components/ModalSend/ModalSend';
+import {useSelector} from 'react-redux';
+import {selectClientState} from '../redux/slices/ClientSlice';
 
 export const Send = () => {
+  const userInfo = useSelector(selectClientState());
+
   const [modalVisible, setModalVisible] = useState(false);
-  const [balance, setBalance] = useState(140000000);
-  const [userToSend, setUserToSend] = useState(' ');
+  const [balance, setBalance] = useState(+userInfo.account.balance);
+  const [userToSend, setUserToSend] = useState('');
   const [destinationTouched, setDestinationTouched] = useState(false);
   const [errorDestination, setErrorDestination] = useState('');
   const [amount, setAmount] = useState(0);

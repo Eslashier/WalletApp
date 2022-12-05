@@ -1,20 +1,22 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {MyDrawerContentComponentProps} from '../interfaces/MyDrawerContentComponentProps';
 import {Image, Text, View} from 'react-native';
 import images from '../assets/images/images';
 import {styles} from '../theme/LateralMenuStyle';
 import {LateralButton} from '../components/LateralButton/LateralButton';
 import {AuthContext} from '../context/AuthContext';
+import {useSelector} from 'react-redux';
+import {selectClientState} from '../redux/slices/ClientSlice';
 
 export const LateralMenu = ({navigation}: MyDrawerContentComponentProps) => {
   const {logout} = useContext(AuthContext);
-  const [name] = useState('User`s name');
+  const userInfo = useSelector(selectClientState());
 
   return (
     <View style={styles.mainContainer}>
       <View style={styles.imageContainer}>
-        <Image style={styles.imageSize} source={images[1]} />
-        <Text style={styles.name}>{name}</Text>
+        <Image style={styles.imageSize} source={{uri: userInfo?.photo}} />
+        <Text style={styles.name}>{userInfo?.fullName}</Text>
       </View>
       <View style={styles.buttonContainer}>
         <LateralButton

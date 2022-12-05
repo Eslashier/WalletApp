@@ -1,5 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {possibleStatus} from '../../config/possibleStatus';
+import {getClientInfo} from '../../services/Clients/getClientInfo';
+import {RootState} from '../storage/Store';
 
 type clientType = {
   id: string;
@@ -8,7 +10,7 @@ type clientType = {
   phone: string;
   photo: string;
   state: 1;
-  createdDate: Date;
+  createdDate: Date | null;
   updatedDate: Date | null;
   deletedDate: null;
   app: appType;
@@ -19,7 +21,7 @@ type appType = {
   id: string;
   clientId: string;
   color: string;
-  createdDate: Date;
+  createdDate: Date | null;
   updatedDate: Date | null;
 };
 
@@ -29,29 +31,85 @@ type accountType = {
   balance: string;
   credit: string;
   state: number;
-  createdDate: Date;
+  createdDate: Date | null;
   updatedDate: Date | null;
   deletedDate: null;
 };
 
 interface initialStateType {
-  registerClient: clientType | null;
+  client: clientType;
   status: possibleStatus;
   error: string | null;
 }
 
 const initialState: initialStateType = {
-  registerClient: null,
+  client: {
+    id: '',
+    fullName: '',
+    email: '',
+    phone: '',
+    photo: 'https://miro.medium.com/max/1024/1*xDi2csEAWxu95IEkaNdFUQ.png',
+    state: 1,
+    createdDate: null,
+    updatedDate: null,
+    deletedDate: null,
+    app: {
+      id: '',
+      clientId: '',
+      color: '',
+      createdDate: null,
+      updatedDate: null,
+    },
+    account: {
+      id: '',
+      clientId: '',
+      balance: '0',
+      credit: '0',
+      state: 1,
+      createdDate: null,
+      updatedDate: null,
+      deletedDate: null,
+    },
+  },
   status: possibleStatus.IDLE,
   error: null,
 };
 
 const clientSlice = createSlice({
   name: 'client',
-  initialState,
+  initialState: initialState,
   reducers: {},
+  extraReducers: builder => {
+    builder.addCase(getClientInfo.pending, state => {
+      state.status = possibleStatus.PENDING;
+    });
+    builder.addCase(getClientInfo.fulfilled, (state, action) => {
+      if (action.payload === true || action.payload === false) {
+        state.status = possibleStatus.IDLE;
+        state.error = null;
+      } else {
+        state.status = possibleStatus.COMPLETED;
+        console.log(action.payload);
+        state.client = action.payload;
+        state.error = null;
+      }
+    });
+    builder.addCase(getClientInfo.rejected, state => {
+      state.status = possibleStatus.FAILED;
+      state.error = 'Something went wrong fetching the client data';
+    });
+  },
 });
 
 export type {clientType, appType, accountType};
 export type {initialStateType};
+
+// export default clientSlice.getInitialState;
 export default clientSlice.reducer;
+
+export const selectClientState = () => (state: RootState) =>
+  state.client.client;
+export const selectClientStatus = () => (state: RootState) =>
+  state.client.status;
+export const selectClientFetchError = () => (state: RootState) =>
+  state.client.error;
