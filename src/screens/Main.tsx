@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {ScrollView, View} from 'react-native';
 import {BalanceMain} from '../components/BalanceMain/BalanceMain';
 import {styles} from '../theme/MainStyle';
-import {TRANSACTIONS} from '../shared/transactions';
+// import {TRANSACTIONS} from '../shared/transactions';
 import {Transactions} from '../components/Transactions/Transactions';
 import {
   selectClientStatus,
@@ -11,25 +11,31 @@ import {
 } from '../redux/slices/ClientSlice';
 import {useSelector} from 'react-redux';
 import {possibleStatus} from '../config/possibleStatus';
-import {getClientInfo} from '../services/Clients/getClientInfo';
-import {selectUserEmail} from '../redux/slices/AuthSlice';
+import {selectTransactionState} from '../redux/slices/TransactionsSlice';
 import {useAppDispatch} from '../redux/storage/Store';
+import {getTransactions} from '../services/Transactions/getTransactions';
+import {selectUserEmail} from '../redux/slices/AuthSlice';
 
 export const Main = () => {
-  const dispatch = useAppDispatch();
-  const userData = useSelector(selectUserEmail());
   const userStatus = useSelector(selectClientStatus());
   const userError = useSelector(selectClientFetchError());
   const userInfo = useSelector(selectClientState());
-
-  // console.log(userInfo);
-  // console.log(userStatus);
-  // console.log(userError);
+  const transactions = useSelector(selectTransactionState());
+  const userData = useSelector(selectUserEmail());
 
   const balance = userInfo.account.balance;
-  // const balance = '0';
 
-  const transactions = TRANSACTIONS;
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const tokenData = {
+      token: userData?.idToken,
+      accountId: userInfo.account.id,
+    };
+    dispatch(getTransactions(tokenData));
+  }, [dispatch, userData, userInfo]);
+
+  // const transactions = TRANSACTIONS;
 
   return userError !== null && userStatus === possibleStatus.IDLE ? (
     <></>

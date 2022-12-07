@@ -6,7 +6,7 @@ import {registerClientType} from '../../redux/slices/RegisterSlice';
 const registerClientAPI = urlApi + '/client';
 
 export const registerClient = createAsyncThunk(
-  'checkUserExist',
+  'registerClient',
   async (client: registerClientType) => {
     const response = await fetch(registerClientAPI, {
       method: 'POST',

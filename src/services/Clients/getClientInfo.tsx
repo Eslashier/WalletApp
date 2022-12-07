@@ -5,7 +5,7 @@ import {clientType} from '../../redux/slices/ClientSlice';
 const checkUserAPI = urlApi + '/client/';
 
 export const getClientInfo = createAsyncThunk(
-  'checkUserExist',
+  'getClientInfo',
   async (userData: any) => {
     const response = await fetch(checkUserAPI + `${userData.email}`, {
       headers: {
@@ -13,6 +13,6 @@ export const getClientInfo = createAsyncThunk(
       },
     });
     const data: clientType = await response.json();
-    return await data;
+    return data;
   },
 );

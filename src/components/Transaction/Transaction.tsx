@@ -1,23 +1,32 @@
 import React from 'react';
 import {Image, ImageSourcePropType, Text, View} from 'react-native';
+import {useSelector} from 'react-redux';
+import {selectClientState} from '../../redux/slices/ClientSlice';
 import {styles} from './TransactionStyle';
 
 interface Props {
   text: string;
   value: string;
-  date: string;
+  date: Date;
   img: ImageSourcePropType;
-  account: string;
+  accountOutcome: string;
+  accountIncome: string;
 }
 
-const localAccount = '1';
-
-export const Transaction = ({text, value, date, img, account}: Props) => {
-  const d = date.slice(8, 10);
-  const m = date.slice(5, 7);
-  const y = date.slice(0, 4);
-  let hh = date.slice(11, 13);
-  const mm = date.slice(14, 16);
+export const Transaction = ({
+  text,
+  value,
+  date,
+  img,
+  accountOutcome,
+  accountIncome,
+}: Props) => {
+  const userState = useSelector(selectClientState());
+  const d = date.toString().slice(8, 10);
+  const m = date.toString().slice(5, 7);
+  const y = date.toString().slice(0, 4);
+  let hh = date.toString().slice(11, 13);
+  const mm = date.toString().slice(14, 16);
   let dayTime = 'PM';
 
   if (+hh > 12) {
@@ -41,7 +50,12 @@ export const Transaction = ({text, value, date, img, account}: Props) => {
               <Text
                 style={
                   (styles.value,
-                  {...(account === localAccount ? styles.green : styles.red)})
+                  {
+                    ...(accountOutcome === accountIncome ||
+                    accountIncome === userState.account.id
+                      ? styles.green
+                      : styles.red),
+                  })
                 }>
                 {'$ ' + value.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')}
               </Text>

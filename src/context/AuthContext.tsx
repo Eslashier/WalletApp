@@ -4,7 +4,7 @@ import Auth0 from 'react-native-auth0';
 import jwtDecode from 'jwt-decode';
 import {Alert} from 'react-native';
 import {setLoginInfo} from '../redux/slices/AuthSlice';
-import { useAppDispatch } from '../redux/storage/Store';
+import {useAppDispatch} from '../redux/storage/Store';
 
 const auth0 = new Auth0({
   domain: 'dev-i5u6y8fotlyau8mz.us.auth0.com',

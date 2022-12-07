@@ -4,6 +4,7 @@ import AuthReducer from '../slices/AuthSlice';
 import userExistsReducer from '../slices/UserExistSlice';
 import registerClientReducer from '../slices/RegisterSlice';
 import clientReducer from '../slices/ClientSlice';
+import transactionReducer from '../slices/TransactionsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     userExists: userExistsReducer,
     registerClient: registerClientReducer,
     client: clientReducer,
+    transactions: transactionReducer,
   },
 });
 

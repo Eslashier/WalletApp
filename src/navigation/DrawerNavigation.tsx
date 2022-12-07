@@ -11,6 +11,9 @@ import {RegisterStackNavigator} from './RegisterStack';
 import {selectUserEmail} from '../redux/slices/AuthSlice';
 import {useAppDispatch} from '../redux/storage/Store';
 import {checkUserExist} from '../services/Clients/userExists';
+import {getClientInfo} from '../services/Clients/getClientInfo';
+import {getTransactions} from '../services/Transactions/getTransactions';
+import {selectClientState} from '../redux/slices/ClientSlice';
 
 const Drawer = createDrawerNavigator();
 
@@ -21,8 +24,8 @@ export const DrawerNavigation = () => {
   const userData = useSelector(selectUserEmail());
 
   useEffect(() => {
-    console.log(userData);
     dispatch(checkUserExist(userData?.email!));
+    dispatch(getClientInfo(userData));
   }, [dispatch, userData]);
 
   return userExists ? (

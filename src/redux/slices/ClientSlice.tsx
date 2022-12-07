@@ -84,15 +84,9 @@ const clientSlice = createSlice({
       state.status = possibleStatus.PENDING;
     });
     builder.addCase(getClientInfo.fulfilled, (state, action) => {
-      if (action.payload === true || action.payload === false) {
-        state.status = possibleStatus.IDLE;
-        state.error = null;
-      } else {
-        state.status = possibleStatus.COMPLETED;
-        console.log(action.payload);
-        state.client = action.payload;
-        state.error = null;
-      }
+      state.status = possibleStatus.COMPLETED;
+      state.client = {...action.payload};
+      state.error = null;
     });
     builder.addCase(getClientInfo.rejected, state => {
       state.status = possibleStatus.FAILED;
@@ -102,9 +96,7 @@ const clientSlice = createSlice({
 });
 
 export type {clientType, appType, accountType};
-export type {initialStateType};
 
-// export default clientSlice.getInitialState;
 export default clientSlice.reducer;
 
 export const selectClientState = () => (state: RootState) =>

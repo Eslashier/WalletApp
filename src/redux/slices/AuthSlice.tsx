@@ -20,13 +20,15 @@ const AuthSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setLoginInfo(state, action) {
-      state.client = action.payload;
+    setLoginInfo(state, infoUser) {
+      state.client = infoUser.payload;
+      return state;
     },
   },
 });
 
 export const {setLoginInfo} = AuthSlice.actions;
+
 export default AuthSlice.reducer;
 
 export const selectUserEmail = () => (state: RootState) => state.auth.client;

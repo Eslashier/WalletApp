@@ -1,9 +1,10 @@
 import React from 'react';
 import images from '../../assets/images/images';
+import {transactionType} from '../../redux/slices/TransactionsSlice';
 import {Transaction} from '../Transaction/Transaction';
 
 interface Props {
-  transactions: Array<any>;
+  transactions: Array<transactionType>;
 }
 
 export const Transactions = ({transactions}: Props) => {
@@ -16,7 +17,8 @@ export const Transactions = ({transactions}: Props) => {
           value={transaction.amount.toString()}
           date={transaction.dateTime}
           img={images[1]}
-          account={transaction.outcomeAccount}
+          accountOutcome={transaction.outcomeAccountId}
+          accountIncome={transaction.incomeAccountId}
         />
       ))}
     </>
