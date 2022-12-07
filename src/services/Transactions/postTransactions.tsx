@@ -2,18 +2,29 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {urlApi} from '../../config/urlConfig';
 import {transactionType} from '../../redux/slices/TransactionsSlice';
 
-const checkUserAPI = urlApi + '/movement/';
+const checkUserAPI = urlApi + '/movement';
+
+export type postTransactionType = {
+  incomeAccountId: string;
+  outcomeAccountId: string;
+  reason: string;
+  amount: number;
+  fees: number;
+};
 
 export const postTransactions = createAsyncThunk(
   'postTransactions',
-  async (transactionInfo: any) => {
+  async (transactionObject: any) => {
     const response = await fetch(checkUserAPI, {
       method: 'POST',
       headers: {
-        authorization: 'Bearer ' + transactionInfo.idToken,
+        'Content-type': 'application/json; charset=UTF-8',
+        authorization: 'Bearer ' + transactionObject.idToken,
       },
+      body: JSON.stringify(transactionObject.transaction),
     });
-    const transactions: transactionType[] = await response.json();
-    return transactions;
+    const transaction: transactionType = await response.json();
+    console.log(transaction);
+    return transaction;
   },
 );

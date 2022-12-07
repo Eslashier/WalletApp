@@ -7,9 +7,20 @@ import {TextIcon} from '../components/TextIcon/TextIcon';
 import {ModalLoan} from '../components/ModalLoan/ModalLoan';
 import {selectClientState} from '../redux/slices/ClientSlice';
 import {useSelector} from 'react-redux';
+import {
+  postTransactions,
+  postTransactionType,
+} from '../services/Transactions/postTransactions';
+import {selectUserEmail} from '../redux/slices/AuthSlice';
+import {useAppDispatch} from '../redux/storage/Store';
+import {selectTransactionState} from '../redux/slices/TransactionsSlice';
+import {getClientInfo} from '../services/Clients/getClientInfo';
 
 export const Loan = () => {
+  const dispatch = useAppDispatch();
+
   const userInfo = useSelector(selectClientState());
+  const userData = useSelector(selectUserEmail());
 
   const [modalVisible, setModalVisible] = useState(false);
   const [loanBalance, setLoanBalance] = useState(+userInfo.account.credit);
@@ -24,8 +35,27 @@ export const Loan = () => {
     setModalVisible(true);
   };
 
+  const transactions = useSelector(selectTransactionState());
+
+  useEffect(() => {
+    dispatch(getClientInfo(userData));
+  }, [dispatch, transactions, userData]);
+
   const takeLoan = () => {
     if (errorLoan.length === 0 && errorReason.length === 0 && loan > 0) {
+      const loanTransaction: postTransactionType = {
+        incomeAccountId: userInfo.account.id,
+        outcomeAccountId: userInfo.account.id,
+        reason: reason,
+        amount: loan,
+        fees: 0,
+      };
+      const dispatchObject = {
+        idToken: userData?.idToken,
+        email: userData?.email,
+        transaction: loanTransaction,
+      };
+      dispatch(postTransactions(dispatchObject));
       setLoanBalance(loanBalance - loan);
       setModalVisible(false);
       setLoan(0);

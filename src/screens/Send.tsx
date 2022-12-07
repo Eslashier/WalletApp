@@ -7,9 +7,16 @@ import {BalancePay} from '../components/BalancePay/BalancePay';
 import {ModalSend} from '../components/ModalSend/ModalSend';
 import {useSelector} from 'react-redux';
 import {selectClientState} from '../redux/slices/ClientSlice';
+import {useAppDispatch} from '../redux/storage/Store';
+import {getClientInfo} from '../services/Clients/getClientInfo';
+import {selectUserEmail} from '../redux/slices/AuthSlice';
+import {selectTransactionState} from '../redux/slices/TransactionsSlice';
 
 export const Send = () => {
+  const dispatch = useAppDispatch();
+
   const userInfo = useSelector(selectClientState());
+  const userData = useSelector(selectUserEmail());
 
   const [modalVisible, setModalVisible] = useState(false);
   const [balance, setBalance] = useState(+userInfo.account.balance);
@@ -81,7 +88,14 @@ export const Send = () => {
     } else {
       setErrorDestination('');
     }
+    // dispatch();
   }, [userToSend]);
+
+  const transactions = useSelector(selectTransactionState());
+
+  useEffect(() => {
+    dispatch(getClientInfo(userData));
+  }, [dispatch, transactions, userData]);
 
   return (
     <>

@@ -6,10 +6,10 @@ const checkUserAPI = urlApi + '/movement/';
 
 export const getTransactions = createAsyncThunk(
   'getTransactions',
-  async (accountInfo: any) => {
-    const response = await fetch(checkUserAPI + accountInfo.accountId, {
+  async (tokenData: any) => {
+    const response = await fetch(checkUserAPI + tokenData.accountId, {
       headers: {
-        authorization: 'Bearer ' + accountInfo.idToken,
+        authorization: 'Bearer ' + tokenData.idToken,
       },
     });
     const transactions: transactionType[] = await response.json();

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Modal, Text, View} from 'react-native';
-import {ColorButton, ColorButtonSmaller} from '../ColorButton/ColorButton';
+import {ColorButton} from '../ColorButton/ColorButton';
 import {styles} from './ModalLoanStyle';
 
 interface Props {
@@ -21,7 +21,7 @@ export const ModalLoan = ({isVisible, actionButtonTake, setState}: Props) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>
-            Your loan has been approved, {'\n'} Do you wanna continue?
+            Your loan has been approved, {'\n'} Do you want to continue?
           </Text>
           <ColorButton
             text={'Yes, please'}

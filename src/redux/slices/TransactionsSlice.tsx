@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {possibleStatus} from '../../config/possibleStatus';
 import {getTransactions} from '../../services/Transactions/getTransactions';
+import {postTransactions} from '../../services/Transactions/postTransactions';
 import {RootState} from '../storage/Store';
 
 type transactionType = {
@@ -30,6 +31,7 @@ const transactionsSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: builder => {
+    //GET
     builder.addCase(getTransactions.pending, state => {
       state.status = possibleStatus.PENDING;
     });
@@ -39,6 +41,20 @@ const transactionsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getTransactions.rejected, state => {
+      state.status = possibleStatus.FAILED;
+      state.error = 'Something went wrong fetching the client data';
+    });
+    //POST
+    builder.addCase(postTransactions.pending, state => {
+      state.status = possibleStatus.PENDING;
+    });
+    builder.addCase(postTransactions.fulfilled, (state, action) => {
+      const newTransactions = [action.payload, ...state.transactions];
+      state.transactions = newTransactions.slice(0, 10);
+      state.status = possibleStatus.COMPLETED;
+      state.error = null;
+    });
+    builder.addCase(postTransactions.rejected, state => {
       state.status = possibleStatus.FAILED;
       state.error = 'Something went wrong fetching the client data';
     });

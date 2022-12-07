@@ -29,7 +29,7 @@ export const Main = () => {
 
   useEffect(() => {
     const tokenData = {
-      token: userData?.idToken,
+      idToken: userData?.idToken,
       accountId: userInfo.account.id,
     };
     dispatch(getTransactions(tokenData));
