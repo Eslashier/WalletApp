@@ -13,7 +13,6 @@ import {
 } from '../services/Transactions/postTransactions';
 import {selectUserEmail} from '../redux/slices/AuthSlice';
 import {useAppDispatch} from '../redux/storage/Store';
-import {selectTransactionState} from '../redux/slices/TransactionsSlice';
 import {getClientInfo} from '../services/Clients/getClientInfo';
 
 export const Loan = () => {
@@ -35,12 +34,6 @@ export const Loan = () => {
     setModalVisible(true);
   };
 
-  const transactions = useSelector(selectTransactionState());
-
-  useEffect(() => {
-    dispatch(getClientInfo(userData));
-  }, [dispatch, transactions, userData]);
-
   const takeLoan = () => {
     if (errorLoan.length === 0 && errorReason.length === 0 && loan > 0) {
       const loanTransaction: postTransactionType = {
@@ -52,7 +45,6 @@ export const Loan = () => {
       };
       const dispatchObject = {
         idToken: userData?.idToken,
-        email: userData?.email,
         transaction: loanTransaction,
       };
       dispatch(postTransactions(dispatchObject));
@@ -62,6 +54,7 @@ export const Loan = () => {
       setReason('');
       setLoanTouched(false);
       setReasonTouched(false);
+      dispatch(getClientInfo(userData));
     } else {
       setLoanError('Please enter a valid loan');
       setErrorReason('Please enter a valid purpose');

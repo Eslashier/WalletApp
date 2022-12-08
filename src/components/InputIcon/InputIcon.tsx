@@ -11,6 +11,7 @@ interface PropsString {
   setState: React.Dispatch<React.SetStateAction<string>>;
   state: string | undefined;
   error?: string;
+  functionOnchange?: Function;
 }
 
 export const InputIcon = ({
@@ -42,6 +43,48 @@ export const InputIcon = ({
                   setState(input);
                 }
           }
+        />
+      </View>
+      <Text style={styles.error}>{error && touched ? error : ''}</Text>
+    </>
+  );
+};
+
+interface PropsFunctionString {
+  icon: string;
+  placeholder: string;
+  touched: boolean;
+  setTouched: React.Dispatch<React.SetStateAction<boolean>>;
+  setState: React.Dispatch<React.SetStateAction<string>>;
+  state: string | undefined;
+  error?: string;
+  functionOnchange: Function;
+}
+export const InputIconWithFunction = ({
+  icon,
+  placeholder,
+  touched,
+  setTouched,
+  setState,
+  state,
+  error,
+  functionOnchange,
+}: PropsFunctionString) => {
+  return (
+    <>
+      <View style={styles.row}>
+        <View style={styles.icon}>
+          <Icon name={icon} color="grey" size={35} />
+        </View>
+        <TextInput
+          value={state ? state : ''}
+          placeholder={placeholder}
+          style={{...(error && touched ? styles.inputError : styles.input)}}
+          onChangeText={input => {
+            functionOnchange(input);
+            setState(input);
+            setTouched(true);
+          }}
         />
       </View>
       <Text style={styles.error}>{error && touched ? error : ''}</Text>

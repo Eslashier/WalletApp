@@ -24,7 +24,6 @@ export const postTransactions = createAsyncThunk(
       body: JSON.stringify(transactionObject.transaction),
     });
     const transaction: transactionType = await response.json();
-    console.log(transaction);
     return transaction;
   },
 );

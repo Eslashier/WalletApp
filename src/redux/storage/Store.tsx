@@ -5,6 +5,7 @@ import userExistsReducer from '../slices/UserExistSlice';
 import registerClientReducer from '../slices/RegisterSlice';
 import clientReducer from '../slices/ClientSlice';
 import transactionReducer from '../slices/TransactionsSlice';
+import accountToSendReducer from '../slices/UserToSendSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     registerClient: registerClientReducer,
     client: clientReducer,
     transactions: transactionReducer,
+    accountToSend: accountToSendReducer,
   },
 });
 

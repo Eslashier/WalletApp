@@ -2,21 +2,34 @@ import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {LoginButton} from '../components/LoginButton/LogInButton';
 import {styles} from '../theme/RegisterStyle';
-import {InputIcon, InputIconNumber} from '../components/InputIcon/InputIcon';
+import {
+  InputIcon,
+  InputIconNumber,
+  InputIconWithFunction,
+} from '../components/InputIcon/InputIcon';
 import {BalancePay} from '../components/BalancePay/BalancePay';
 import {ModalSend} from '../components/ModalSend/ModalSend';
 import {useSelector} from 'react-redux';
 import {selectClientState} from '../redux/slices/ClientSlice';
 import {useAppDispatch} from '../redux/storage/Store';
-import {getClientInfo} from '../services/Clients/getClientInfo';
 import {selectUserEmail} from '../redux/slices/AuthSlice';
-import {selectTransactionState} from '../redux/slices/TransactionsSlice';
+import {
+  selectUserToSendExistsState,
+  selectUserToSendIdState,
+} from '../redux/slices/UserToSendSlice';
+import {checkUserExist} from '../services/Clients/userExists';
+import {checkUserToSendExist} from '../services/Account/userExists';
+import {getAccountId} from '../services/Account/getAccountId';
+import {postTransactions, postTransactionType} from '../services/Transactions/postTransactions';
+import { getClientInfo } from '../services/Clients/getClientInfo';
 
 export const Send = () => {
   const dispatch = useAppDispatch();
 
   const userInfo = useSelector(selectClientState());
   const userData = useSelector(selectUserEmail());
+  const userToSendExist = useSelector(selectUserToSendExistsState());
+  const userToSendId = useSelector(selectUserToSendIdState());
 
   const [modalVisible, setModalVisible] = useState(false);
   const [balance, setBalance] = useState(+userInfo.account.balance);
@@ -35,8 +48,21 @@ export const Send = () => {
       errorDestination.length === 0 &&
       errorAmount.length === 0 &&
       errorMessage.length === 0 &&
+      userToSendId &&
       amount > 0
     ) {
+      const transaction: postTransactionType = {
+        incomeAccountId: userToSendId,
+        outcomeAccountId: userInfo.account.id,
+        reason: message,
+        amount: amount,
+        fees: 0,
+      };
+      const objectToDispatch = {
+        tokenId: userData?.idToken,
+        transaction: transaction,
+      };
+      dispatch(postTransactions(objectToDispatch));
       setBalance(balance - amount);
       setModalVisible(false);
       setAmount(0);
@@ -45,6 +71,7 @@ export const Send = () => {
       setDestinationTouched(false);
       setAmountTouched(false);
       setMessageTouched(false);
+      dispatch(getClientInfo(userData));
     } else {
       setErrorAmount('Please enter a valid loan');
       setErrorDestination('Please enter a valid purpose');
@@ -80,22 +107,35 @@ export const Send = () => {
   }, [message]);
 
   useEffect(() => {
+    const objectToDispatch = {
+      idToken: userData?.idToken,
+      info: userToSend,
+    };
     const numberOrEmailRjx = /^(?:\d{10}|\w+@\w+\.\w{2,3})$/;
     if (userToSend.length === 0) {
       setErrorDestination('Please specify an email or phone number');
     } else if (!numberOrEmailRjx.test(userToSend)) {
       setErrorDestination('Please input a valid email or phone number');
+    } else if (numberOrEmailRjx.test(userToSend) && !userToSendExist) {
+      setErrorDestination(
+        'The user doesnt exist, please verify the information',
+      );
+    } else if (userToSendId === userInfo.account.id && userToSend) {
+      setErrorDestination('You cannot send monet to yourself');
+      dispatch(getAccountId(objectToDispatch));
     } else {
       setErrorDestination('');
+      dispatch(getAccountId(objectToDispatch));
     }
-    // dispatch();
-  }, [userToSend]);
+  }, [userToSend, userToSendExist, userToSendId]);
 
-  const transactions = useSelector(selectTransactionState());
-
-  useEffect(() => {
-    dispatch(getClientInfo(userData));
-  }, [dispatch, transactions, userData]);
+  function verifyUser(data: string) {
+    const objectToDispatch = {
+      idToken: userData?.idToken,
+      info: data,
+    };
+    dispatch(checkUserToSendExist(objectToDispatch));
+  }
 
   return (
     <>
@@ -108,7 +148,7 @@ export const Send = () => {
         />
         <View>
           <BalancePay balance={balance.toString()} text={'Account balance'} />
-          <InputIcon
+          <InputIconWithFunction
             icon={'user'}
             placeholder="User email or phone number"
             setState={setUserToSend}
@@ -116,6 +156,7 @@ export const Send = () => {
             touched={destinationTouched}
             setTouched={setDestinationTouched}
             state={userToSend}
+            functionOnchange={verifyUser}
           />
           <InputIconNumber
             state={amount}

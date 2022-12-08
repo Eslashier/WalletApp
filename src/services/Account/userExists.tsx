@@ -1,21 +1,16 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {urlApi} from '../../config/urlConfig';
 
-const checkUserAPI = urlApi + '/client/account/';
+const checkUserAPI = urlApi + '/client/account-exist/';
 
-export type accountId = {
-  id: string;
-};
-
-export const getAccountId = createAsyncThunk(
-  'getAccountId',
+export const checkUserToSendExist = createAsyncThunk(
+  'checkUserToSendExist',
   async (userData: any) => {
     const response = await fetch(checkUserAPI + `${userData.info}`, {
       headers: {
         authorization: 'Bearer ' + userData.idToken,
       },
     });
-    const data: accountId = await response.json();
-    return data;
+    return (await response.json()) as boolean;
   },
 );
