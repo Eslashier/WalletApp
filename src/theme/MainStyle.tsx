@@ -61,6 +61,6 @@ export const styles = StyleSheet.create({
   },
   transactions: {
     flex: 0.8,
-    backgroundColor: 'aliceblue',
+    backgroundColor: 'white',
   },
 });

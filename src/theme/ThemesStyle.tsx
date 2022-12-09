@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttons: {
+    backgroundColor: 'white',
     flex: 1,
     justifyContent: 'flex-end',
   },

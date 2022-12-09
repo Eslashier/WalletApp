@@ -17,11 +17,13 @@ import {
   selectUserToSendExistsState,
   selectUserToSendIdState,
 } from '../redux/slices/UserToSendSlice';
-import {checkUserExist} from '../services/Clients/userExists';
 import {checkUserToSendExist} from '../services/Account/userExists';
 import {getAccountId} from '../services/Account/getAccountId';
-import {postTransactions, postTransactionType} from '../services/Transactions/postTransactions';
-import { getClientInfo } from '../services/Clients/getClientInfo';
+import {
+  postTransactions,
+  postTransactionType,
+} from '../services/Transactions/postTransactions';
+import {getClientInfo} from '../services/Clients/getClientInfo';
 
 export const Send = () => {
   const dispatch = useAppDispatch();

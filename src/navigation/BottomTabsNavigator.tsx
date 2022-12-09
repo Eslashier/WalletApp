@@ -43,7 +43,7 @@ export const BottomTabsNavigator = ({
         headerShown: false,
         tabBarActiveBackgroundColor: '#1554F7',
         tabBarInactiveBackgroundColor: '#1554F7',
-        tabBarActiveTintColor: 'aliceblue',
+        tabBarActiveTintColor: 'white',
         tabBarInactiveTintColor: 'grey',
       }}>
       <Tab.Screen

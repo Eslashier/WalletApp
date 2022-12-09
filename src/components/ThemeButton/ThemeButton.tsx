@@ -5,12 +5,13 @@ import {styles} from './ThemeButtonStyle';
 interface Props {
   text: string;
   img: ImageSourcePropType;
-  action?: () => void;
+  theme: string;
+  setState: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const ThemeButton = ({text, img, action}: Props) => {
+export const ThemeButton = ({text, img, theme, setState}: Props) => {
   return (
-    <Pressable style={styles.container} onPress={action}>
+    <Pressable style={styles.container} onPress={() => setState(theme)}>
       <Image style={styles.imageSize} source={img} />
       <Text style={styles.text}>{text}</Text>
     </Pressable>

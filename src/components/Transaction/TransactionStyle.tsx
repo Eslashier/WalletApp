@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     height: 75,
     marginTop: 18,
     alignItems: 'center',
-    backgroundColor: 'aliceblue',
+    backgroundColor: 'white',
     flexDirection: 'row',
   },
   imageSize: {

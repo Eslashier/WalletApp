@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {possibleStatus} from '../../config/possibleStatus';
+import {updateTheme} from '../../services/App/changeTheme';
 import {getClientInfo} from '../../services/Clients/getClientInfo';
 import {RootState} from '../storage/Store';
 
@@ -56,7 +57,7 @@ const initialState: initialStateType = {
     app: {
       id: '',
       clientId: '',
-      color: '',
+      color: 'default',
       createdDate: null,
       updatedDate: null,
     },
@@ -91,6 +92,20 @@ const clientSlice = createSlice({
     builder.addCase(getClientInfo.rejected, state => {
       state.status = possibleStatus.FAILED;
       state.error = 'Something went wrong fetching the client data';
+    });
+    builder.addCase(updateTheme.pending, state => {
+      state.status = possibleStatus.PENDING;
+    });
+    builder.addCase(updateTheme.fulfilled, (state, action) => {
+      state.status = possibleStatus.COMPLETED;
+      console.log(action.payload);
+      console.log(state.client.app);
+      state.client.app = action.payload;
+      state.error = null;
+    });
+    builder.addCase(updateTheme.rejected, state => {
+      state.status = possibleStatus.FAILED;
+      state.error = 'Something went wrong posting the theme';
     });
   },
 });

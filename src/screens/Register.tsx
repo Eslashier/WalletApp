@@ -7,7 +7,7 @@ import {AuthContext} from '../context/AuthContext';
 import {registerClientType} from '../redux/slices/RegisterSlice';
 import {registerClient} from '../services/Clients/registerClient';
 import {useAppDispatch} from '../redux/storage/Store';
-import { checkUserExist } from '../services/Clients/userExists';
+import {checkUserExist} from '../services/Clients/userExists';
 
 export const Register = () => {
   const dispatch = useAppDispatch();
