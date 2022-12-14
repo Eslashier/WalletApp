@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   },
   containerTop: {
     backgroundColor: 'white',
-    flex: 0.4,
+    flex: 1,
     justifyContent: 'center',
   },
   containerForm: {
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   content: {
     color: 'black',
     textAlign: 'center',
-    fontSize: 15,
+    fontSize: 20,
     justifyContent: 'center',
   },
   input: {
