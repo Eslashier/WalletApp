@@ -98,8 +98,7 @@ const clientSlice = createSlice({
     });
     builder.addCase(updateTheme.fulfilled, (state, action) => {
       state.status = possibleStatus.COMPLETED;
-      console.log(action.payload);
-      console.log(state.client.app);
+
       state.client.app = action.payload;
       state.error = null;
     });

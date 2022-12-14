@@ -42,10 +42,10 @@ export const Main = () => {
       idToken: userData?.idToken,
       accountId: userInfo.account.id,
     };
-    dispatch(getTransactions(tokenData));
+    if (tokenData.accountId !== '') {
+      dispatch(getTransactions(tokenData));
+    }
   }, [dispatch, userData, userInfo]);
-
-  // const transactions = TRANSACTIONS;
 
   useEffect(() => {
     switch (userInfo.app.color) {

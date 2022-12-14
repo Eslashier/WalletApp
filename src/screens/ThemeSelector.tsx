@@ -44,18 +44,21 @@ export const ThemeSelector = ({action}: Props) => {
             img={images[1]}
             setState={setTheme}
             theme={'arts'}
+            state={theme}
           />
           <ThemeButton
             text={'Food & Drinks'}
             img={images[2]}
             setState={setTheme}
             theme={'food'}
+            state={theme}
           />
           <ThemeButton
             text={'Gaming'}
             img={images[3]}
             setState={setTheme}
             theme={'default'}
+            state={theme}
           />
         </View>
         <View style={styles.containerRow}>
@@ -64,18 +67,21 @@ export const ThemeSelector = ({action}: Props) => {
             img={images[4]}
             setState={setTheme}
             theme={'music'}
+            state={theme}
           />
           <ThemeButton
             text={'Nature'}
             img={images[5]}
             setState={setTheme}
             theme={'nature'}
+            state={theme}
           />
           <ThemeButton
             text={'Activity'}
             img={images[6]}
             setState={setTheme}
             theme={'activity'}
+            state={theme}
           />
         </View>
         <View style={styles.containerRow}>
@@ -84,18 +90,21 @@ export const ThemeSelector = ({action}: Props) => {
             img={images[7]}
             setState={setTheme}
             theme={'fashion'}
+            state={theme}
           />
           <ThemeButton
             text={'Technology'}
             img={images[8]}
             setState={setTheme}
             theme={'technology'}
+            state={theme}
           />
           <ThemeButton
             text={'Travel'}
             img={images[9]}
             setState={setTheme}
             theme={'travel'}
+            state={theme}
           />
         </View>
         <View style={styles.buttons}>
@@ -103,7 +112,10 @@ export const ThemeSelector = ({action}: Props) => {
             <ColorButtonSmaller
               text={'Cancel'}
               color={'white'}
-              action={action}
+              action={() => {
+                action();
+                setTheme(themeState.app.color);
+              }}
             />
             <ColorButtonSmaller
               text={'Accept'}
