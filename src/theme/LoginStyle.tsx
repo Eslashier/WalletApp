@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   notVisible: {
     display: 'none',
   },
-  containerLogo: {
+  containerTop: {
     backgroundColor: 'white',
     flex: 0.4,
     justifyContent: 'center',
@@ -13,6 +13,10 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 0.6,
     justifyContent: 'flex-start',
+  },
+  containerLogo: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   content: {
     color: 'black',
@@ -30,5 +34,9 @@ export const styles = StyleSheet.create({
     borderColor: 'grey',
     paddingLeft: 10,
     borderRadius: 7,
+  },
+  logo: {
+    width: 150,
+    height: 150,
   },
 });

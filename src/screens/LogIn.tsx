@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Text, TextInput, View} from 'react-native';
+import {Image, Text, TextInput, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import logo from '../assets/log/logo';
 import {Divider} from '../components/Divider/Divider';
 import {LoginButton} from '../components/LoginButton/LogInButton';
 import {LoginWithButton} from '../components/LoginWithButton/LogInWithButton';
@@ -41,6 +42,7 @@ export const LogIn = ({navigation}: MyStackScreenProps) => {
         <Text style={styles.content}>Wallet App</Text>
       </View>
       <View style={styles.containerForm}>
+        <Image style={styles.logo} source={logo} />
         <Text style={styles.content}>
           Create an account or log into WalletApp
         </Text>

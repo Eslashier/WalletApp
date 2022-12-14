@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
 import {MyDrawerContentComponentProps} from '../interfaces/MyDrawerContentComponentProps';
 import {Image, Text, View} from 'react-native';
-import images from '../assets/images/images';
 import {styles} from '../theme/LateralMenuStyle';
 import {LateralButton} from '../components/LateralButton/LateralButton';
 import {AuthContext} from '../context/AuthContext';
 import {useSelector} from 'react-redux';
 import {selectClientState} from '../redux/slices/ClientSlice';
+import logo from '../assets/log/logo';
 
 export const LateralMenu = ({navigation}: MyDrawerContentComponentProps) => {
   const {logout} = useContext(AuthContext);
@@ -32,7 +32,7 @@ export const LateralMenu = ({navigation}: MyDrawerContentComponentProps) => {
         <LateralButton icon={'x'} text={'Log out'} action={() => logout()} />
       </View>
       <View style={styles.logoContainer}>
-        <Image style={styles.logo} source={images[1]} />
+        <Image style={styles.logo} source={logo} />
       </View>
     </View>
   );
