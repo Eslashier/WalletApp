@@ -38,13 +38,15 @@ export const Main = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const tokenData = {
-      idToken: userData?.idToken,
-      accountId: userInfo.account.id,
-    };
-    if (tokenData.accountId !== '') {
-      dispatch(getTransactions(tokenData));
-    }
+    setTimeout(() => {
+      const tokenData = {
+        idToken: userData?.idToken,
+        accountId: userInfo.account.id,
+      };
+      if (tokenData.accountId !== '') {
+        dispatch(getTransactions(tokenData));
+      }
+    }, 500);
   }, [dispatch, userData, userInfo]);
 
   useEffect(() => {
