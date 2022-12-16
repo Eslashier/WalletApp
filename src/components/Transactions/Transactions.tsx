@@ -15,7 +15,7 @@ export const Transactions = ({transactions, theme}: Props) => {
         <Transaction
           key={transaction.id}
           text={transaction.reason}
-          value={transaction.amount.toString()}
+          value={transaction.amount}
           date={transaction.dateTime}
           img={
             theme

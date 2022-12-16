@@ -16,6 +16,7 @@ export const getAccountId = createAsyncThunk(
       },
     });
     const data: accountId = await response.json();
+    console.log(data);
     return data;
   },
 );

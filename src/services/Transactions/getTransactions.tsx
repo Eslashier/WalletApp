@@ -12,9 +12,7 @@ export const getTransactions = createAsyncThunk(
         authorization: 'Bearer ' + tokenData.idToken,
       },
     });
-    console.log(tokenData);
     const transactions: transactionType[] = await response.json();
-    // console.log(transactions);
     return transactions;
   },
 );

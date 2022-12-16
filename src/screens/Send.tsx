@@ -61,7 +61,7 @@ export const Send = () => {
         fees: 0,
       };
       const objectToDispatch = {
-        tokenId: userData?.idToken,
+        idToken: userData?.idToken,
         transaction: transaction,
       };
       dispatch(postTransactions(objectToDispatch));
